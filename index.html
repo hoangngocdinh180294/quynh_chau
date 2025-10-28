@@ -38,12 +38,105 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
+        /* Force hardware acceleration */
+        .hero-content,
+        .criteria-card,
+        .hobby-card,
+        .stat-card,
+        .contact-info-card,
+        .contact-social-card,
+        .slider-container,
+        .about-info {
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            perspective: 1000px;
+        }
+
+        /* Disable heavy animations for better performance */
+        .criteria-card:hover .criteria-icon-wrapper::before,
+        .about-info:hover::before,
+        .criteria-card::before,
+        .stat-card::before {
+            animation: none !important;
+        }
+
+        /* Simplify or disable continuous animations */
+        .hero,
+        .about,
+        .hobbies,
+        .criteria,
+        .marquee {
+            animation: none !important; /* Disable background animations */
+        }
+
+        /* Disable icon float animations */
+        .criteria-icon,
+        .stat-icon,
+        .hero .btn,
+        .social-link {
+            animation: none !important;
+        }
+
+        /* Disable title bounce */
+        .section-title {
+            animation: none !important;
+        }
+
         /* Reduce motion for accessibility and performance */
         @media (prefers-reduced-motion: reduce) {
             * {
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Mobile Performance Optimizations */
+        @media (max-width: 768px) {
+            /* Disable heavy animations on mobile */
+            .particle,
+            .hero-shapes,
+            .floating-emoji,
+            .criteria::before,
+            .hobbies::before,
+            .hobbies::after,
+            .contact::before,
+            .contact::after,
+            .about::before,
+            .about::after {
+                display: none !important;
+            }
+
+            /* Disable backdrop-filter on mobile (very heavy) */
+            * {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+            }
+
+            /* Simplify gradients on mobile */
+            .hero,
+            .about,
+            .hobbies,
+            .criteria,
+            .contact {
+                background-size: 100% 100% !important;
+                animation: none !important;
+            }
+
+            /* Disable complex transforms on mobile */
+            .criteria-card:hover .criteria-icon,
+            .stat-card:hover .stat-icon,
+            .hobby-card:hover .hobby-icon {
+                transform: none !important;
+            }
+
+            /* Simplify hover effects */
+            .criteria-card::before,
+            .criteria-card::after,
+            .stat-card::before,
+            .stat-card::after,
+            .hobby-card::before {
+                display: none !important;
             }
         }
 
@@ -2057,77 +2150,18 @@
             }
         }
 
-        /* ==========================
-           CURSOR TRAIL EFFECT
-        ========================== */
-        .cursor-trail {
-            position: fixed;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: radial-gradient(circle, var(--neon-pink), var(--neon-purple));
-            pointer-events: none;
-            z-index: 9998;
-            opacity: 0;
-            transform: translate(-50%, -50%);
-            animation: cursorFade 0.8s ease-out forwards;
-            box-shadow: 0 0 20px var(--neon-pink);
-        }
-
-        @keyframes cursorFade {
-            0% {
-                opacity: 1;
-                transform: translate(-50%, -50%) scale(1);
-            }
-            100% {
-                opacity: 0;
-                transform: translate(-50%, -50%) scale(2);
-            }
-        }
-
-        /* Custom Cursor */
+        /* Custom Cursor Disabled for Performance */
         body {
-            cursor: none;
-        }
-
-        .custom-cursor {
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            border: 2px solid var(--neon-pink);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transition: all 0.1s ease;
-            transform: translate(-50%, -50%);
-            mix-blend-mode: difference;
-        }
-
-        .custom-cursor-dot {
-            position: fixed;
-            width: 6px;
-            height: 6px;
-            background: var(--neon-cyan);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 10000;
-            transform: translate(-50%, -50%);
-            box-shadow: 0 0 10px var(--neon-cyan);
-        }
-
-        a:hover ~ .custom-cursor,
-        button:hover ~ .custom-cursor {
-            transform: translate(-50%, -50%) scale(2);
-            background: rgba(255, 0, 128, 0.1);
+            cursor: auto;
         }
 
         /* ==========================
-           SCROLL ANIMATIONS - ENHANCED
+           SCROLL ANIMATIONS - OPTIMIZED
         ========================== */
         .scroll-reveal {
             opacity: 0;
-            transform: translateY(80px);
-            transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: translateY(40px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
 
         .scroll-reveal.revealed {
@@ -2137,29 +2171,29 @@
 
         .scroll-reveal-left {
             opacity: 0;
-            transform: translateX(-150px) scale(0.8);
-            transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: translateX(-60px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
 
         .scroll-reveal-right {
             opacity: 0;
-            transform: translateX(150px) scale(0.8);
-            transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: translateX(60px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
 
         .scroll-reveal-left.revealed,
         .scroll-reveal-right.revealed {
             opacity: 1;
-            transform: translateX(0) scale(1);
+            transform: translateX(0);
         }
 
-        /* Delay for staggered effect */
+        /* Delay for staggered effect - reduced */
         .scroll-reveal:nth-child(1) { transition-delay: 0s; }
-        .scroll-reveal:nth-child(2) { transition-delay: 0.1s; }
-        .scroll-reveal:nth-child(3) { transition-delay: 0.2s; }
-        .scroll-reveal:nth-child(4) { transition-delay: 0.3s; }
-        .scroll-reveal:nth-child(5) { transition-delay: 0.4s; }
-        .scroll-reveal:nth-child(6) { transition-delay: 0.5s; }
+        .scroll-reveal:nth-child(2) { transition-delay: 0.05s; }
+        .scroll-reveal:nth-child(3) { transition-delay: 0.1s; }
+        .scroll-reveal:nth-child(4) { transition-delay: 0.15s; }
+        .scroll-reveal:nth-child(5) { transition-delay: 0.2s; }
+        .scroll-reveal:nth-child(6) { transition-delay: 0.25s; }
 
         /* ==========================
            RESPONSIVE
@@ -2889,12 +2923,25 @@
 
     <script>
         // ============================================
+        // DEVICE DETECTION
+        // ============================================
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+        
+        console.log('📱 Device:', isMobile ? 'Mobile' : 'Desktop');
+
+        // ============================================
         // CREATE ANIMATED PARTICLES - OPTIMIZED
         // ============================================
         function createParticles() {
+            // Skip particles on mobile for better performance
+            if (isMobile) {
+                console.log('⚡ Particles disabled on mobile for performance');
+                return;
+            }
+
             const particlesContainer = document.getElementById('heroParticles');
-            // Reduced from 50 to 25 for better performance
-            const particleCount = 25;
+            // Reduced to 10 for optimal performance
+            const particleCount = 10;
 
             // Use document fragment for better performance
             const fragment = document.createDocumentFragment();
@@ -2903,40 +2950,50 @@
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 
-                // Random size between 3px and 8px
-                const size = Math.random() * 5 + 3;
+                // Random size between 4px and 7px
+                const size = Math.random() * 3 + 4;
                 particle.style.width = size + 'px';
                 particle.style.height = size + 'px';
                 
                 // Random horizontal position
                 particle.style.left = Math.random() * 100 + '%';
                 
-                // Random animation duration between 12s and 20s
-                const duration = Math.random() * 8 + 12;
+                // Much slower animation (20s to 30s) for smoothness
+                const duration = Math.random() * 10 + 20;
                 particle.style.animationDuration = duration + 's';
                 
                 // Random animation delay
-                const delay = Math.random() * 5;
+                const delay = Math.random() * 10;
                 particle.style.animationDelay = -delay + 's';
-                
-                // Performance optimization
-                particle.style.willChange = 'transform, opacity';
                 
                 fragment.appendChild(particle);
             }
             
             particlesContainer.appendChild(fragment);
-            console.log('✨ ' + particleCount + ' particles created (optimized)!');
+            console.log('✨ ' + particleCount + ' particles created (performance mode)');
         }
 
         // Create particles on load
         createParticles();
 
-        // Scroll Progress Bar
-        window.addEventListener('scroll', () => {
+        // ============================================
+        // THROTTLED SCROLL HANDLER - OPTIMIZED
+        // ============================================
+        let scrollTimeout;
+        let lastScrollTime = 0;
+        const scrollThrottle = isMobile ? 100 : 50; // More throttle on mobile
+
+        function updateScrollProgress() {
+            const now = Date.now();
+            if (now - lastScrollTime < scrollThrottle) return;
+            
+            lastScrollTime = now;
             const progress = (window.pageYOffset / (document.body.scrollHeight - window.innerHeight)) * 100;
             document.getElementById('scrollProgress').style.width = progress + '%';
-        });
+        }
+
+        // Use passive event listener for better scroll performance
+        window.addEventListener('scroll', updateScrollProgress, { passive: true });
 
         // Slider
         let currentSlide = 0;
@@ -2978,70 +3035,20 @@
         }
 
         createDots();
-        setInterval(() => changeSlide(1), 2000);
+        
+        // Slower autoplay on mobile, faster on desktop
+        const autoplaySpeed = isMobile ? 4000 : 3000;
+        setInterval(() => changeSlide(1), autoplaySpeed);
 
         // ============================================
-        // CUSTOM CURSOR & TRAIL EFFECT
+        // CUSTOM CURSOR & TRAIL EFFECT - DESKTOP ONLY
         // ============================================
         
-        // Create custom cursor elements
-        const cursor = document.createElement('div');
-        cursor.className = 'custom-cursor';
-        document.body.appendChild(cursor);
-
-        const cursorDot = document.createElement('div');
-        cursorDot.className = 'custom-cursor-dot';
-        document.body.appendChild(cursorDot);
-
-        // Track cursor position
-        let mouseX = 0, mouseY = 0;
-        let cursorX = 0, cursorY = 0;
-        let dotX = 0, dotY = 0;
-
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-
-            // Create trail particle
-            const trail = document.createElement('div');
-            trail.className = 'cursor-trail';
-            trail.style.left = e.clientX + 'px';
-            trail.style.top = e.clientY + 'px';
-            document.body.appendChild(trail);
-
-            setTimeout(() => trail.remove(), 800);
-        });
-
-        // Smooth cursor follow
-        function animateCursor() {
-            // Smooth follow for cursor ring
-            cursorX += (mouseX - cursorX) * 0.15;
-            cursorY += (mouseY - cursorY) * 0.15;
-            cursor.style.left = cursorX + 'px';
-            cursor.style.top = cursorY + 'px';
-
-            // Faster follow for dot
-            dotX += (mouseX - dotX) * 0.3;
-            dotY += (mouseY - dotY) * 0.3;
-            cursorDot.style.left = dotX + 'px';
-            cursorDot.style.top = dotY + 'px';
-
-            requestAnimationFrame(animateCursor);
-        }
-        animateCursor();
-
-        // Hide custom cursor when leaving window
-        document.addEventListener('mouseleave', () => {
-            cursor.style.opacity = '0';
-            cursorDot.style.opacity = '0';
-        });
-
-        document.addEventListener('mouseenter', () => {
-            cursor.style.opacity = '1';
-            cursorDot.style.opacity = '1';
-        });
-
-        console.log('✅ Custom cursor activated');
+        // Custom cursor disabled for performance
+        // if (!isMobile) {
+        //     console.log('⚡ Custom cursor disabled for better performance');
+        // }
+        console.log('⚡ Custom cursor disabled for optimal performance');
 
         // ============================================
         // ENHANCED SCROLL REVEAL - ALTERNATING SIDES
@@ -3058,31 +3065,36 @@
             }
         });
 
-        // Scroll Reveal Observer - triggers both up and down
+        // Scroll Reveal Observer - Optimized for mobile
+        const revealThreshold = isMobile ? 0.1 : 0.15; // Lower threshold on mobile
+        const revealRootMargin = isMobile ? '0px' : '0px 0px -50px 0px'; // Simpler on mobile
+
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('revealed');
+                    // On mobile, keep revealed to reduce repaints
+                    if (isMobile) {
+                        revealObserver.unobserve(entry.target);
+                    }
                 } else {
-                    // Remove revealed class when scrolling away
-                    // This allows re-triggering when scrolling back
-                    if (entry.boundingClientRect.top > 0) {
-                        // Element is below viewport - scrolling down
-                        entry.target.classList.remove('revealed');
-                    } else {
-                        // Element is above viewport - scrolling up
-                        entry.target.classList.remove('revealed');
+                    // Only re-trigger on desktop
+                    if (!isMobile) {
+                        if (entry.boundingClientRect.top > 0) {
+                            entry.target.classList.remove('revealed');
+                        } else {
+                            entry.target.classList.remove('revealed');
+                        }
                     }
                 }
             });
-        }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+        }, { threshold: revealThreshold, rootMargin: revealRootMargin });
 
         document.querySelectorAll('.scroll-reveal, .scroll-reveal-left, .scroll-reveal-right').forEach(el => {
             revealObserver.observe(el);
         });
 
-        console.log('✅ Scroll reveal animations activated (alternating left/right)');
-        console.log(`✅ ${elementsToReveal.length} elements will animate from sides`);
+        console.log(`✅ Scroll reveal activated (${isMobile ? 'mobile optimized' : 'full features'})`);
 
         // Smooth Scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -3123,134 +3135,60 @@
         setTimeout(() => {
             console.log('🎨 Activating all PRO animations...');
             
-            // Force section titles animations
+            // Section titles - static for performance
             document.querySelectorAll('.section-title').forEach(title => {
-                title.style.animation = 'titleBounce 2s ease-in-out infinite, neonPulse 3s ease-in-out infinite';
-                title.style.color = 'var(--neon-pink)';
-                title.style.textShadow = '0 0 30px rgba(255, 0, 128, 0.3)';
+                title.style.animation = 'none';
             });
 
-            // Force hero animations
+            // Hero animations disabled for performance
             const heroH1 = document.querySelector('.hero h1');
             if (heroH1) {
-                heroH1.style.animation = 'heroTextGlow 2s ease-in-out infinite';
+                heroH1.style.animation = 'none';
             }
 
             const heroBtn = document.querySelector('.hero .btn');
             if (heroBtn) {
-                heroBtn.style.animation = 'btnFloat 3s ease-in-out infinite';
+                heroBtn.style.animation = 'none';
             }
 
-            // Force typewriter infinite loop
+            // Typewriter - one time only for performance
             const typewriter = document.querySelector('.typewriter');
             if (typewriter) {
-                typewriter.style.animation = 'typingLoop 8s steps(40) infinite, blink 0.8s step-end infinite';
-                typewriter.style.borderRight = '4px solid var(--neon-cyan)';
-                typewriter.style.overflow = 'hidden';
-                typewriter.style.whiteSpace = 'nowrap';
-                typewriter.style.display = 'inline-block';
-                console.log('✅ Typewriter infinite loop activated');
+                typewriter.style.width = '100%'; // Show immediately
+                typewriter.style.borderRight = 'none'; // No blinking cursor
+                typewriter.style.animation = 'none';
+                console.log('✅ Typewriter shown (no animation for performance)');
             }
 
-            // Force icon animations
+            // Icon animations disabled for performance
             document.querySelectorAll('.criteria-icon').forEach(icon => {
-                icon.style.animation = 'iconFloat 3s ease-in-out infinite';
+                icon.style.animation = 'none';
             });
 
-            // Force social pulse
+            // Social pulse disabled for performance
             document.querySelectorAll('.social-link').forEach(link => {
-                link.style.animation = 'socialPulse 2s ease-in-out infinite';
+                link.style.animation = 'none';
             });
 
-            // Force marquee
+            // Marquee disabled for performance
             const marquee = document.querySelector('.marquee');
             if (marquee) {
-                marquee.style.background = 'linear-gradient(90deg, var(--neon-pink), var(--neon-purple), var(--neon-cyan), var(--neon-green), var(--neon-pink))';
-                marquee.style.backgroundSize = '300% 100%';
-                marquee.style.animation = 'marqueeGradient 8s linear infinite';
+                marquee.style.background = 'linear-gradient(90deg, var(--neon-pink), var(--neon-purple))';
+                marquee.style.animation = 'none';
             }
 
             const marqueeContent = document.querySelector('.marquee-content');
             if (marqueeContent) {
-                marqueeContent.style.animation = 'marqueeScroll 30s linear infinite';
+                marqueeContent.style.animation = 'none';
             }
 
             console.log('✅ All PRO animations activated!');
         }, 100);
 
         // ============================================
-        // PRO HOVER EFFECTS - RIPPLE & 3D TILT
+        // PRO HOVER EFFECTS - DISABLED FOR PERFORMANCE
         // ============================================
-
-        // Ripple effect on click
-        document.querySelectorAll('.btn, .stat-card, .criteria-card, .hobby-card, .slider-btn, .tag').forEach(element => {
-            element.addEventListener('click', function(e) {
-                const ripple = document.createElement('div');
-                const rect = this.getBoundingClientRect();
-                const size = Math.max(rect.width, rect.height);
-                const x = e.clientX - rect.left - size / 2;
-                const y = e.clientY - rect.top - size / 2;
-
-                ripple.style.width = ripple.style.height = size + 'px';
-                ripple.style.left = x + 'px';
-                ripple.style.top = y + 'px';
-                ripple.style.position = 'absolute';
-                ripple.style.borderRadius = '50%';
-                ripple.style.background = 'rgba(255, 255, 255, 0.5)';
-                ripple.style.pointerEvents = 'none';
-                ripple.style.animation = 'rippleEffect 0.6s ease-out';
-
-                if (this.style.position !== 'absolute' && this.style.position !== 'relative' && this.style.position !== 'fixed') {
-                    this.style.position = 'relative';
-                }
-                const originalOverflow = this.style.overflow;
-                this.style.overflow = 'hidden';
-
-                this.appendChild(ripple);
-
-                setTimeout(() => {
-                    ripple.remove();
-                    if (originalOverflow) this.style.overflow = originalOverflow;
-                }, 600);
-            });
-        });
-
-        // Add ripple animation keyframe
-        const rippleStyle = document.createElement('style');
-        rippleStyle.textContent = `
-            @keyframes rippleEffect {
-                from {
-                    transform: scale(0);
-                    opacity: 1;
-                }
-                to {
-                    transform: scale(2);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(rippleStyle);
-
-        // 3D Tilt effect for cards
-        document.querySelectorAll('.stat-card, .criteria-card, .hobby-card').forEach(card => {
-            card.addEventListener('mousemove', function(e) {
-                const rect = this.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                const rotateX = (y - centerY) / 10;
-                const rotateY = (centerX - x) / 10;
-
-                this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-20px) scale(1.05)`;
-            });
-
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = '';
-            });
-        });
-
-        console.log('💖 All PRO hover effects active! ✨');
+        console.log('⚡ Ripple & 3D Tilt disabled for optimal performance');
     </script>
 </body>
 </html>
