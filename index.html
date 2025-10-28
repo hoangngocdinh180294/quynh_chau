@@ -64,10 +64,11 @@
         .hero,
         .about,
         .hobbies,
-        .criteria,
-        .marquee {
+        .criteria {
             animation: none !important; /* Disable background animations */
         }
+        
+        /* Keep marquee animation - will be enabled by JS */
 
         /* Disable icon float animations */
         .criteria-icon,
@@ -137,6 +138,12 @@
             .stat-card::after,
             .hobby-card::before {
                 display: none !important;
+            }
+
+            /* Disable marquee on mobile */
+            .marquee,
+            .marquee-content {
+                animation: none !important;
             }
         }
 
@@ -2150,9 +2157,71 @@
             }
         }
 
-        /* Custom Cursor Disabled for Performance */
+        /* ==========================
+           CURSOR TRAIL EFFECT - SMOOTH
+        ========================== */
+        .cursor-trail {
+            position: fixed;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--neon-pink), var(--neon-purple));
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0;
+            transform: translate(-50%, -50%);
+            animation: cursorFade 0.9s ease-out forwards;
+            box-shadow: 0 0 25px var(--neon-pink);
+            will-change: transform, opacity;
+        }
+
+        @keyframes cursorFade {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(2.5);
+            }
+        }
+
+        /* Custom Cursor */
         body {
-            cursor: auto;
+            cursor: none;
+        }
+
+        .custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--neon-pink);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.1s ease;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: difference;
+            will-change: transform;
+        }
+
+        .custom-cursor-dot {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background: var(--neon-cyan);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 10px var(--neon-cyan);
+            will-change: transform;
+        }
+
+        a:hover ~ .custom-cursor,
+        button:hover ~ .custom-cursor {
+            transform: translate(-50%, -50%) scale(1.5);
+            background: rgba(255, 0, 128, 0.1);
         }
 
         /* ==========================
@@ -3041,14 +3110,80 @@
         setInterval(() => changeSlide(1), autoplaySpeed);
 
         // ============================================
-        // CUSTOM CURSOR & TRAIL EFFECT - DESKTOP ONLY
+        // CUSTOM CURSOR & TRAIL EFFECT - OPTIMIZED
         // ============================================
         
-        // Custom cursor disabled for performance
-        // if (!isMobile) {
-        //     console.log('⚡ Custom cursor disabled for better performance');
-        // }
-        console.log('⚡ Custom cursor disabled for optimal performance');
+        if (!isMobile) {
+            // Create custom cursor elements
+            const cursor = document.createElement('div');
+            cursor.className = 'custom-cursor';
+            document.body.appendChild(cursor);
+
+            const cursorDot = document.createElement('div');
+            cursorDot.className = 'custom-cursor-dot';
+            document.body.appendChild(cursorDot);
+
+            // Track cursor position
+            let mouseX = 0, mouseY = 0;
+            let cursorX = 0, cursorY = 0;
+            let dotX = 0, dotY = 0;
+            let lastTrailTime = 0;
+            const trailThrottle = 40; // Create trail every 40ms for smooth effect
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+
+                // Throttle trail creation for smooth but performant effect
+                const now = Date.now();
+                if (now - lastTrailTime > trailThrottle) {
+                    lastTrailTime = now;
+                    
+                    // Create trail particle
+                    const trail = document.createElement('div');
+                    trail.className = 'cursor-trail';
+                    trail.style.left = e.clientX + 'px';
+                    trail.style.top = e.clientY + 'px';
+                    document.body.appendChild(trail);
+
+                    // Remove after animation completes
+                    setTimeout(() => trail.remove(), 900);
+                }
+            }, { passive: true });
+
+            // Smooth cursor follow with requestAnimationFrame
+            function animateCursor() {
+                // Smooth follow for cursor ring
+                cursorX += (mouseX - cursorX) * 0.15;
+                cursorY += (mouseY - cursorY) * 0.15;
+                cursor.style.left = cursorX + 'px';
+                cursor.style.top = cursorY + 'px';
+
+                // Faster follow for dot
+                dotX += (mouseX - dotX) * 0.3;
+                dotY += (mouseY - dotY) * 0.3;
+                cursorDot.style.left = dotX + 'px';
+                cursorDot.style.top = dotY + 'px';
+
+                requestAnimationFrame(animateCursor);
+            }
+            animateCursor();
+
+            // Hide custom cursor when leaving window
+            document.addEventListener('mouseleave', () => {
+                cursor.style.opacity = '0';
+                cursorDot.style.opacity = '0';
+            });
+
+            document.addEventListener('mouseenter', () => {
+                cursor.style.opacity = '1';
+                cursorDot.style.opacity = '1';
+            });
+
+            console.log('✅ Custom cursor activated (optimized)');
+        } else {
+            console.log('⚡ Custom cursor disabled on mobile');
+        }
 
         // ============================================
         // ENHANCED SCROLL REVEAL - ALTERNATING SIDES
@@ -3170,16 +3305,22 @@
                 link.style.animation = 'none';
             });
 
-            // Marquee disabled for performance
-            const marquee = document.querySelector('.marquee');
-            if (marquee) {
-                marquee.style.background = 'linear-gradient(90deg, var(--neon-pink), var(--neon-purple))';
-                marquee.style.animation = 'none';
-            }
+            // Marquee - enable scroll animation (desktop only for performance)
+            if (!isMobile) {
+                const marquee = document.querySelector('.marquee');
+                if (marquee) {
+                    marquee.style.background = 'linear-gradient(90deg, var(--neon-pink), var(--neon-purple), var(--neon-cyan), var(--neon-green), var(--neon-pink))';
+                    marquee.style.backgroundSize = '300% 100%';
+                    marquee.style.animation = 'marqueeGradient 8s linear infinite';
+                }
 
-            const marqueeContent = document.querySelector('.marquee-content');
-            if (marqueeContent) {
-                marqueeContent.style.animation = 'none';
+                const marqueeContent = document.querySelector('.marquee-content');
+                if (marqueeContent) {
+                    marqueeContent.style.animation = 'marqueeScroll 30s linear infinite';
+                }
+                console.log('✅ Marquee animation enabled (desktop)');
+            } else {
+                console.log('⚡ Marquee static on mobile for performance');
             }
 
             console.log('✅ All PRO animations activated!');
