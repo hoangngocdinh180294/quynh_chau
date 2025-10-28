@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💖 Dành tặng Quỳnh Châu xinh đẹp 💖</title>
+    <title>Quỳnh Châu - Portfolio</title>
     <style>
         * {
             margin: 0;
@@ -11,761 +11,1113 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary-color: #ff6b9d;
+            --secondary-color: #c86dd7;
+            --accent-color: #ffd93d;
+            --pink-light: #ffb3d9;
+            --blue-light: #a6dcef;
+            --green-light: #b8e6d5;
+            --text-dark: #2d3748;
+            --text-light: #718096;
+            --bg-light: #fff5f8;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow: hidden;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            height: 100vh;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
         }
 
-        .container {
-            text-align: center;
-            z-index: 10;
-            position: relative;
-            padding: 20px;
-            max-width: 90%;
-        }
-
-        h1 {
-            font-size: 4rem;
-            color: #fff;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-            animation: glow 2s ease-in-out infinite alternate;
-            margin-bottom: 30px;
-        }
-
-        .message {
-            font-size: 2rem;
-            color: #fff;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 30px 50px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            animation: float 3s ease-in-out infinite;
-            margin-bottom: 30px;
-        }
-
-        .message p {
-            margin: 15px 0;
-        }
-
-        .message .main-text {
-            font-size: 2rem;
-        }
-
-        .message .sub-text {
+        nav .logo {
             font-size: 1.5rem;
-            margin-top: 20px;
-        }
-
-        .message .small-text-main {
-            font-size: 1.3rem;
-            margin-top: 15px;
-        }
-
-        .emojis {
-            font-size: 3rem;
-            animation: bounce 1s ease-in-out infinite;
-            margin: 20px 0;
-        }
-
-        @keyframes glow {
-            from {
-                text-shadow: 0 0 20px #fff, 0 0 30px #ff00de, 0 0 40px #ff00de;
-            }
-            to {
-                text-shadow: 0 0 30px #fff, 0 0 40px #ff00de, 0 0 50px #ff00de, 0 0 60px #ff00de;
-            }
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
-        }
-
-        @keyframes bounce {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.2);
-            }
-        }
-
-        /* Particles/Hearts */
-        .heart {
-            position: absolute;
-            font-size: 2rem;
-            animation: rise 4s ease-in infinite;
-            opacity: 0;
-        }
-
-        @keyframes rise {
-            0% {
-                bottom: -50px;
-                opacity: 1;
-                transform: translateX(0) rotate(0deg);
-            }
-            100% {
-                bottom: 100vh;
-                opacity: 0;
-                transform: translateX(100px) rotate(360deg);
-            }
-        }
-
-        /* Stars */
-        .star {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            background: white;
-            border-radius: 50%;
-            animation: twinkle 2s ease-in-out infinite;
-        }
-
-        @keyframes twinkle {
-            0%, 100% {
-                opacity: 0;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1.5);
-            }
-        }
-
-        /* Sparkles */
-        .sparkle {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background: radial-gradient(circle, #fff 0%, transparent 70%);
-            border-radius: 50%;
-            animation: sparkle-animation 1.5s ease-in-out infinite;
-            pointer-events: none;
-        }
-
-        @keyframes sparkle-animation {
-            0%, 100% {
-                opacity: 0;
-                transform: scale(0);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        /* Button */
-        .btn {
-            background: linear-gradient(45deg, #ff6b6b, #ee5a6f);
-            border: none;
-            color: white;
-            padding: 15px 40px;
-            font-size: 1.2rem;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
-            transition: all 0.3s ease;
-            margin-top: 20px;
-        }
-
-        .btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.6);
-        }
-
-        .btn:active {
-            transform: translateY(-2px);
-        }
-
-        /* Rainbow text */
-        .rainbow {
-            background: linear-gradient(to right, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3);
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+            background-size: 200% 200%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: rainbow-animation 3s ease infinite;
-            background-size: 400% 100%;
+            animation: logoGradient 3s ease infinite;
         }
 
-        @keyframes rainbow-animation {
+        @keyframes logoGradient {
             0%, 100% {
-                background-position: 0 0;
+                background-position: 0% 50%;
             }
             50% {
-                background-position: 100% 0;
+                background-position: 100% 50%;
             }
         }
 
-        /* Confetti */
-        .confetti {
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        nav ul li a::after {
+            content: '';
             position: absolute;
-            width: 10px;
-            height: 10px;
-            background: #f0f;
-            animation: confetti-fall 3s ease-in infinite;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            transition: width 0.3s ease;
         }
 
-        @keyframes confetti-fall {
-            0% {
-                top: -10%;
-                transform: translateX(0) rotateZ(0deg);
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 50%, var(--blue-light) 100%);
+            position: relative;
+            overflow: hidden;
+            animation: gradientShift 10s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% {
+                background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 50%, var(--blue-light) 100%);
             }
-            100% {
-                top: 110%;
-                transform: translateX(100px) rotateZ(360deg);
+            50% {
+                background: linear-gradient(135deg, var(--secondary-color) 0%, var(--pink-light) 50%, var(--primary-color) 100%);
             }
         }
 
-        /* Custom Modal */
-        .modal-overlay {
-            position: fixed;
+        .hero::before {
+            content: '';
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            animation: fadeIn 0.3s ease;
-            padding: 20px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,144C960,149,1056,139,1152,128C1248,117,1344,107,1392,101.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: bottom;
+            animation: wave 10s ease-in-out infinite;
         }
 
-        .modal-overlay.show {
-            display: flex;
+        @keyframes wave {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(-50px); }
         }
 
-        .modal-content {
-            background: linear-gradient(135deg, #ff6ec4 0%, #7873f5 100%);
-            padding: 50px 60px;
-            border-radius: 30px;
+        .hero-content {
             text-align: center;
-            position: relative;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            animation: scaleIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            max-width: 600px;
-            width: 90%;
+            color: white;
+            z-index: 10;
+            padding: 2rem;
+            animation: fadeInUp 1s ease;
         }
 
-        .modal-content h2 {
-            font-size: 3rem;
-            color: #fff;
-            margin-bottom: 20px;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
-            animation: pulse 1.5s ease-in-out infinite;
-        }
-
-        .modal-content p {
-            font-size: 1.5rem;
-            color: #fff;
-            line-height: 1.8;
-            margin-bottom: 15px;
-        }
-
-        .modal-close-btn {
-            background: linear-gradient(45deg, #fff, #f0f0f0);
-            color: #7873f5;
-            border: none;
-            padding: 12px 35px;
-            font-size: 1.1rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: bold;
-            box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
-            transition: all 0.3s ease;
-            margin-top: 15px;
-        }
-
-        .modal-close-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.5);
-        }
-
-        .modal-close-btn:active {
-            transform: translateY(-1px);
-        }
-
-        @keyframes fadeIn {
+        @keyframes fadeInUp {
             from {
                 opacity: 0;
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
+                transform: translateY(0);
             }
         }
 
-        @keyframes scaleIn {
-            0% {
-                transform: scale(0) rotate(-180deg);
-                opacity: 0;
-            }
-            100% {
-                transform: scale(1) rotate(0deg);
-                opacity: 1;
-            }
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
         }
 
-        @keyframes pulse {
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .hero .description {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.85;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+            position: relative;
+            overflow: hidden;
+            animation: btnPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes btnPulse {
             0%, 100% {
-                transform: scale(1);
+                box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
             }
             50% {
-                transform: scale(1.05);
+                box-shadow: 0 10px 40px rgba(255, 107, 157, 0.7);
             }
         }
 
-        /* Firework effect */
-        .firework {
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(255, 107, 157, 0.6);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--blue-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleShine 3s ease-in-out infinite;
+        }
+
+        @keyframes titleShine {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--blue-light));
+            border-radius: 2px;
+            animation: lineExpand 2s ease-in-out infinite;
+        }
+
+        @keyframes lineExpand {
+            0%, 100% {
+                width: 60px;
+            }
+            50% {
+                width: 100px;
+            }
+        }
+
+        /* About Section */
+        .about {
+            background: var(--bg-light);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            max-width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--pink-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            box-shadow: 0 20px 60px rgba(255, 107, 157, 0.3);
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+            animation: imageFloat 4s ease-in-out infinite;
+            border: 5px solid white;
+        }
+
+        @keyframes imageFloat {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+                box-shadow: 0 20px 60px rgba(255, 107, 157, 0.3);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+                box-shadow: 0 30px 70px rgba(255, 107, 157, 0.5);
+            }
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shine 3s ease-in-out infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .about-image .placeholder {
+            font-size: 8rem;
+            z-index: 1;
+            animation: emojiRotate 3s ease-in-out infinite;
+        }
+
+        @keyframes emojiRotate {
+            0%, 100% {
+                transform: rotate(0deg) scale(1);
+            }
+            50% {
+                transform: rotate(10deg) scale(1.1);
+            }
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: linear-gradient(135deg, white, var(--bg-light));
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(255, 107, 157, 0.15);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--pink-light), var(--blue-light), var(--green-light));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-15px) rotate(2deg);
+            box-shadow: 0 20px 50px rgba(255, 107, 157, 0.3);
+            border-color: var(--primary-color);
+        }
+
+        .skill-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            animation: iconBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes iconBounce {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                transform: translateY(-10px) scale(1.1);
+            }
+        }
+
+        .skill-card:hover .skill-icon {
+            animation: iconSpin 0.6s ease;
+        }
+
+        @keyframes iconSpin {
+            0% {
+                transform: rotate(0deg) scale(1);
+            }
+            50% {
+                transform: rotate(180deg) scale(1.3);
+            }
+            100% {
+                transform: rotate(360deg) scale(1);
+            }
+        }
+
+        .skill-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .skill-card p {
+            color: var(--text-light);
+        }
+
+        /* Projects Section */
+        .projects {
+            background: var(--bg-light);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(255, 107, 157, 0.15);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            border: 2px solid transparent;
+        }
+
+        .project-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--blue-light));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .project-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(255, 107, 157, 0.3);
+            border-color: var(--primary-color);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--pink-light), var(--blue-light), var(--green-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+            animation: gradientRotate 5s ease infinite;
+        }
+
+        @keyframes gradientRotate {
+            0%, 100% {
+                background: linear-gradient(135deg, var(--pink-light), var(--blue-light), var(--green-light));
+            }
+            33% {
+                background: linear-gradient(135deg, var(--blue-light), var(--green-light), var(--pink-light));
+            }
+            66% {
+                background: linear-gradient(135deg, var(--green-light), var(--pink-light), var(--blue-light));
+            }
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.1);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .project-content p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            padding: 0.3rem 0.8rem;
+            background: linear-gradient(135deg, var(--pink-light), var(--blue-light));
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .tag:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--blue-light), var(--green-light));
+            background-size: 400% 400%;
+            animation: gradientMove 15s ease infinite;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes gradientMove {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: dots 20s linear infinite;
+        }
+
+        @keyframes dots {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(50px);
+            }
+        }
+
+        .contact .section-title {
+            color: white;
+            background: linear-gradient(135deg, white, var(--accent-color), white);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+        }
+
+        .contact .section-title::after {
+            background: linear-gradient(90deg, white, var(--accent-color), white);
+        }
+
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-link {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            text-decoration: none;
+            color: white;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            animation: socialPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes socialPulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+            }
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent-color), var(--pink-light));
+            transform: scale(0);
+            transition: transform 0.4s ease;
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .social-link:hover::before {
+            transform: scale(1);
+        }
+
+        .social-link:hover {
+            background: white;
+            color: var(--primary-color);
+            transform: translateY(-10px) rotate(360deg) scale(1.2);
+            border-color: white;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Particles */
+        .particle {
             position: absolute;
             width: 4px;
             height: 4px;
             background: white;
             border-radius: 50%;
-            animation: firework-explosion 1s ease-out forwards;
+            opacity: 0;
+            animation: float-particle 3s ease-in-out infinite;
         }
 
-        @keyframes firework-explosion {
-            0% {
-                transform: translate(0, 0);
-                opacity: 1;
-            }
-            100% {
-                transform: translate(var(--x), var(--y));
+        @keyframes float-particle {
+            0%, 100% {
                 opacity: 0;
+                transform: translateY(0) translateX(0);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(-100px) translateX(50px);
             }
         }
 
-        /* ============================================
-           RESPONSIVE DESIGN - TABLET
-           ============================================ */
-        @media screen and (max-width: 1024px) {
-            h1 {
-                font-size: 3rem;
-            }
-
-            .message {
-                font-size: 1.6rem;
-                padding: 25px 40px;
-            }
-
-            .emojis {
-                font-size: 2.5rem;
-            }
-
-            .btn {
-                font-size: 1.1rem;
-                padding: 14px 35px;
-            }
-
-            .modal-content {
-                padding: 40px 50px;
-            }
-
-            .modal-content h2 {
-                font-size: 2.5rem;
-            }
-
-            .modal-content p {
-                font-size: 1.3rem;
-            }
-        }
-
-        /* ============================================
-           RESPONSIVE DESIGN - MOBILE
-           ============================================ */
+        /* Responsive Design */
         @media screen and (max-width: 768px) {
-            .container {
-                padding: 15px;
+            .mobile-menu-btn {
+                display: block;
             }
 
-            h1 {
-                font-size: 2.2rem;
-                margin-bottom: 20px;
+            nav ul {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                transition: left 0.3s ease;
             }
 
-            .message {
+            nav ul.active {
+                left: 0;
+            }
+
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
                 font-size: 1.2rem;
-                padding: 20px 25px;
-                margin-bottom: 20px;
             }
 
-            .message p {
-                margin: 10px 0;
-            }
-
-            .message .main-text {
-                font-size: 1.2rem;
-            }
-
-            .message .sub-text {
+            .hero .description {
                 font-size: 1rem;
-                margin-top: 12px;
             }
 
-            .message .small-text-main {
-                font-size: 0.9rem;
-                margin-top: 10px;
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
             }
 
-            .emojis {
-                font-size: 1.8rem;
-                margin: 15px 0;
+            .about-image {
+                max-width: 200px;
+                height: 200px;
+                font-size: 5rem;
             }
 
-            .btn {
-                font-size: 1rem;
-                padding: 12px 30px;
-                margin-top: 15px;
+            .section-title {
+                font-size: 2rem;
             }
 
-            .heart {
-                font-size: 1.5rem;
-            }
-
-            .modal-content {
-                padding: 20px 18px;
-                border-radius: 20px;
-                width: 90%;
-                max-width: 400px;
-            }
-
-            .modal-content h2 {
-                font-size: 1.5rem;
-                margin-bottom: 15px;
-            }
-
-            .modal-content p {
-                font-size: 0.95rem !important;
-                line-height: 1.5;
-                margin-bottom: 8px;
-            }
-
-            .modal-close-btn {
-                font-size: 0.95rem;
-                padding: 10px 28px;
-                margin-top: 12px;
+            .skills-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
             }
         }
 
-        /* ============================================
-           RESPONSIVE DESIGN - SMALL MOBILE
-           ============================================ */
         @media screen and (max-width: 480px) {
-            h1 {
-                font-size: 1.8rem;
-                margin-bottom: 15px;
+            .hero h1 {
+                font-size: 2rem;
             }
 
-            .message {
-                font-size: 1rem;
-                padding: 15px 20px;
-                margin-bottom: 15px;
-            }
-
-            .message .main-text {
+            .hero .subtitle {
                 font-size: 1rem;
             }
 
-            .message .sub-text {
-                font-size: 0.85rem;
-                margin-top: 10px;
+            .hero .description {
+                font-size: 0.9rem;
             }
 
-            .message .small-text-main {
-                font-size: 0.75rem;
-                margin-top: 8px;
-            }
-
-            .emojis {
-                font-size: 1.5rem;
-                line-height: 1.5;
+            section {
+                padding: 3rem 1rem;
             }
 
             .btn {
+                padding: 0.8rem 2rem;
                 font-size: 0.9rem;
-                padding: 10px 25px;
-            }
-
-            .modal-content {
-                padding: 18px 15px;
-                max-width: 350px;
-            }
-
-            .modal-content h2 {
-                font-size: 1.3rem;
-                margin-bottom: 12px;
-            }
-
-            .modal-content p {
-                font-size: 0.88rem !important;
-                line-height: 1.5;
-                margin-bottom: 8px;
-            }
-
-            .modal-close-btn {
-                font-size: 0.88rem;
-                padding: 9px 25px;
-                margin-top: 10px;
-            }
-        }
-
-        /* ============================================
-           LANDSCAPE MODE - MOBILE
-           ============================================ */
-        @media screen and (max-height: 500px) and (orientation: landscape) {
-            body {
-                overflow-y: auto;
-            }
-
-            .container {
-                padding: 10px;
-            }
-
-            h1 {
-                font-size: 1.5rem;
-                margin-bottom: 10px;
-            }
-
-            .message {
-                font-size: 0.9rem;
-                padding: 10px 15px;
-                margin-bottom: 10px;
-            }
-
-            .message .main-text {
-                font-size: 0.9rem;
-            }
-
-            .message .sub-text {
-                font-size: 0.75rem;
-                margin-top: 8px;
-            }
-
-            .message .small-text-main {
-                font-size: 0.7rem;
-                margin-top: 6px;
-            }
-
-            .emojis {
-                font-size: 1.2rem;
-                margin: 10px 0;
-            }
-
-            .btn {
-                font-size: 0.85rem;
-                padding: 8px 20px;
-                margin-top: 10px;
-            }
-
-            .modal-content {
-                padding: 15px 20px;
-                max-height: 85vh;
-                overflow-y: auto;
-                max-width: 450px;
-            }
-
-            .modal-content h2 {
-                font-size: 1.2rem;
-                margin-bottom: 8px;
-            }
-
-            .modal-content p {
-                font-size: 0.85rem !important;
-                line-height: 1.4;
-                margin-bottom: 6px;
-            }
-
-            .modal-close-btn {
-                font-size: 0.85rem;
-                padding: 7px 20px;
-                margin-top: 8px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1 class="rainbow">✨ Quỳnh Châu Xinh Đẹp ✨</h1>
-        <div class="message">
-            <p class="main-text">💖 Quỳnh Châu xinh đẹp như một vì sao! 💖</p>
-            <p class="sub-text">
-                🌸 Nụ cười của Quỳnh Châu làm cả thế giới rực rỡ 🌸
-            </p>
-            <p class="small-text-main">
-                ✨ Quỳnh Châu là người tuyệt vời nhất! ✨
-            </p>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container">
+            <div class="logo">Quỳnh Châu</div>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+            <ul id="navMenu">
+                <li><a href="#home" onclick="closeMenu()">Trang chủ</a></li>
+                <li><a href="#about" onclick="closeMenu()">Giới thiệu</a></li>
+                <li><a href="#skills" onclick="closeMenu()">Kỹ năng</a></li>
+                <li><a href="#projects" onclick="closeMenu()">Bộ sưu tập</a></li>
+                <li><a href="#contact" onclick="closeMenu()">Liên hệ</a></li>
+            </ul>
         </div>
-        <div class="emojis">
-            💕 💖 💗 💓 💞 💝 🌹 🌺 🌸 🌼 🌻 ⭐ ✨ 🌟 💫
-        </div>
-        <button class="btn" onclick="celebrate()">
-            Nhấn để xem điều kỳ diệu! 🎉
-        </button>
-    </div>
+    </nav>
 
-    <!-- Custom Modal -->
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal-content">
-            <h2>🎉 Tuyệt Vời! 🎉</h2>
-            <p>💖 Quỳnh Châu thật tuyệt vời! 💖</p>
-            <p>🌟 Hãy luôn tự tin và tỏa sáng nhé! 🌟</p>
-            <p>✨ Bạn làm cả thế giới này đẹp hơn! ✨</p>
-            <button class="modal-close-btn" onclick="closeModal()">Cảm ơn! 💕</button>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>👋 Xin chào, tôi là Quỳnh Châu</h1>
+            <p class="subtitle">Chuyên gia Thời trang Mẹ và Bé</p>
+            <p class="description">
+                Tôi đam mê mang đến những sản phẩm thời trang chất lượng, an toàn và đầy phong cách 
+                cho các bà mẹ và bé yêu, kết hợp giữa sự thoải mái và xu hướng hiện đại.
+            </p>
+            <a href="#contact" class="btn">Liên hệ với tôi</a>
         </div>
-    </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">Giới thiệu về tôi</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="https://scontent.fhan19-1.fna.fbcdn.net/v/t39.30808-6/558074218_3340538886084330_8603171064522772982_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGFqtQvpSYFTVUcIlfLzrGHYXaud8JrgrBhdq53wmuCsLJU1hdSJgdIaAvqW_t3WSbGnj-p8le8HHO_OY_fW6UV&_nc_ohc=iarzqYuUZKsQ7kNvwF0TlEm&_nc_oc=AdkDJ-NOR2j8ZAxDfayy4JFpgFUOpGG_0G0tRFS6cGKIifXSfhVG9hmVU6c4xJXdXlM&_nc_zt=23&_nc_ht=scontent.fhan19-1.fna&_nc_gid=kIhQkJmFwrGx4aVx_5jG-A&oh=00_AfdM8ReS_CO6SwST30tX9kT4Nt8_kbxeWfLtKa3grUXjSw&oe=69060BC2" alt="Quỳnh Châu" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span class="placeholder" style="display: none;">👗</span>
+                </div>
+                <div class="about-text">
+                    <h3>Xin chào! 🌟</h3>
+                    <p>
+                        Tôi là Quỳnh Châu, một người đam mê và có nhiều kinh nghiệm trong lĩnh vực 
+                        thời trang Mẹ và Bé. Tôi luôn tìm kiếm những xu hướng mới nhất và các sản phẩm 
+                        chất lượng để mang lại sự thoải mái và phong cách cho cả mẹ và bé.
+                    </p>
+                    <p>
+                        Với sự am hiểu sâu sắc về nhu cầu của các bà mẹ và em bé, tôi cam kết 
+                        mang đến những lựa chọn thời trang an toàn, tiện lợi và đầy phong cách. 
+                        Hãy cùng khám phá các bộ sưu tập của tôi!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <div class="container">
+            <h2 class="section-title">Kỹ năng của tôi</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">👗</div>
+                    <h3>Thiết kế Thời trang</h3>
+                    <p>Sáng tạo các mẫu thiết kế độc đáo, phù hợp với xu hướng mẹ và bé</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🧵</div>
+                    <h3>Kiến thức Vải vóc</h3>
+                    <p>Am hiểu về chất liệu vải an toàn, thoáng mát và bền đẹp cho trẻ em</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">👶</div>
+                    <h3>Hiểu biết về Trẻ em</h3>
+                    <p>Nắm bắt tâm lý và nhu cầu của trẻ nhỏ để thiết kế trang phục thoải mái</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🛍️</div>
+                    <h3>Marketing & Bán hàng</h3>
+                    <p>Xây dựng chiến lược quảng bá và bán sản phẩm thời trang hiệu quả</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🤝</div>
+                    <h3>Tư vấn Khách hàng</h3>
+                    <p>Tư vấn tận tình, giúp khách hàng lựa chọn sản phẩm ưng ý nhất</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">✨</div>
+                    <h3>Xu hướng & Sáng tạo</h3>
+                    <p>Luôn cập nhật các xu hướng thời trang mới và áp dụng vào thiết kế</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <h2 class="section-title">Bộ sưu tập & Dự án</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">🌸</div>
+                    <div class="project-content">
+                        <h3>Bộ sưu tập Xuân Hè 2025</h3>
+                        <p>Thiết kế và ra mắt bộ sưu tập thời trang mẹ và bé với chất liệu thoáng mát, màu sắc tươi sáng.</p>
+                        <div class="project-tags">
+                            <span class="tag">Thiết kế</span>
+                            <span class="tag">Vải cotton</span>
+                            <span class="tag">Xu hướng</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">🍃</div>
+                    <div class="project-content">
+                        <h3>Dòng sản phẩm Organic</h3>
+                        <p>Phát triển dòng sản phẩm thời trang từ chất liệu hữu cơ, an toàn tuyệt đối cho làn da nhạy cảm của bé.</p>
+                        <div class="project-tags">
+                            <span class="tag">Organic</span>
+                            <span class="tag">An toàn</span>
+                            <span class="tag">Bền vững</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">💝</div>
+                    <div class="project-content">
+                        <h3>Set đồ Mẹ và Bé</h3>
+                        <p>Thiết kế các set đồ đồng điệu cho mẹ và bé, tạo phong cách thời trang gia đình ấn tượng.</p>
+                        <div class="project-tags">
+                            <span class="tag">Set đồ</span>
+                            <span class="tag">Đồng điệu</span>
+                            <span class="tag">Phong cách</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Liên hệ với tôi</h2>
+            <div class="contact-content">
+                <p>Hãy kết nối với tôi qua các kênh sau:</p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/quynh.chau.792" target="_blank" class="social-link" title="Facebook">📘</a>
+                    <a href="https://linkedin.com" target="_blank" class="social-link" title="LinkedIn">💼</a>
+                    <a href="https://github.com" target="_blank" class="social-link" title="GitHub">🐙</a>
+                    <a href="mailto:quynhchau@example.com" class="social-link" title="Email">✉️</a>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-item">📧 quynhchau@example.com</div>
+                    <div class="contact-item">📱 +84 123 456 789</div>
+                    <div class="contact-item">📍 Hà Nội, Việt Nam</div>
+                </div>
+                <a href="mailto:quynhchau@example.com" class="btn">Gửi email cho tôi</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Quỳnh Châu. Made with 💖</p>
+    </footer>
 
     <script>
-        // Create hearts
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.innerHTML = ['❤️', '💕', '💖', '💗', '💓', '💞', '💝'][Math.floor(Math.random() * 7)];
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
-            heart.style.animationDelay = Math.random() * 2 + 's';
-            document.body.appendChild(heart);
-            setTimeout(() => heart.remove(), 5000);
-        }
-
-        // Create stars
-        function createStar() {
-            const star = document.createElement('div');
-            star.classList.add('star');
-            star.style.left = Math.random() * 100 + 'vw';
-            star.style.top = Math.random() * 100 + 'vh';
-            star.style.animationDelay = Math.random() * 2 + 's';
-            document.body.appendChild(star);
-        }
-
-        // Create sparkles
-        function createSparkle(x, y) {
-            const sparkle = document.createElement('div');
-            sparkle.classList.add('sparkle');
-            sparkle.style.left = x + 'px';
-            sparkle.style.top = y + 'px';
-            document.body.appendChild(sparkle);
-            setTimeout(() => sparkle.remove(), 1500);
-        }
-
-        // Create confetti
-        function createConfetti() {
-            const colors = ['#ff0000', '#ff7f00', '#ffff00', '#00ff00', '#0000ff', '#4b0082', '#9400d3', '#ff1493'];
-            const confetti = document.createElement('div');
-            confetti.classList.add('confetti');
-            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-            confetti.style.left = Math.random() * 100 + 'vw';
-            confetti.style.animationDuration = Math.random() * 2 + 2 + 's';
-            confetti.style.animationDelay = Math.random() * 1 + 's';
-            document.body.appendChild(confetti);
-            setTimeout(() => confetti.remove(), 5000);
-        }
-
-        // Firework effect
-        function createFirework(x, y) {
-            const colors = ['#ff0000', '#ff7f00', '#ffff00', '#00ff00', '#0000ff', '#ff1493', '#fff'];
-            for (let i = 0; i < 30; i++) {
-                const firework = document.createElement('div');
-                firework.classList.add('firework');
-                firework.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                firework.style.left = x + 'px';
-                firework.style.top = y + 'px';
-                
-                const angle = (Math.PI * 2 * i) / 30;
-                const velocity = 50 + Math.random() * 50;
-                const tx = Math.cos(angle) * velocity;
-                const ty = Math.sin(angle) * velocity;
-                
-                firework.style.setProperty('--x', tx + 'px');
-                firework.style.setProperty('--y', ty + 'px');
-                
-                document.body.appendChild(firework);
-                setTimeout(() => firework.remove(), 1000);
-            }
-        }
-
-        // Show modal function
-        function showModal() {
-            const modal = document.getElementById('modalOverlay');
-            modal.classList.add('show');
-            
-            // Create fireworks at random positions
-            for (let i = 0; i < 5; i++) {
-                setTimeout(() => {
-                    const x = Math.random() * window.innerWidth;
-                    const y = Math.random() * window.innerHeight;
-                    createFirework(x, y);
-                }, i * 300);
-            }
-        }
-
-        // Close modal function
-        function closeModal() {
-            const modal = document.getElementById('modalOverlay');
-            modal.classList.remove('show');
-        }
-
-        // Celebration function
-        function celebrate() {
-            for (let i = 0; i < 100; i++) {
-                setTimeout(() => createConfetti(), i * 30);
-            }
-            
-            // Show modal after a short delay
-            setTimeout(() => showModal(), 500);
-        }
-
-        // Close modal when clicking outside
-        document.getElementById('modalOverlay').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
             }
         });
 
-        // Mouse move sparkles (disable on mobile to save performance)
-        if (window.innerWidth > 768) {
-            document.addEventListener('mousemove', (e) => {
-                if (Math.random() > 0.8) {
-                    createSparkle(e.clientX, e.clientY);
+        // Mobile menu toggle
+        function toggleMenu() {
+            const menu = document.getElementById('navMenu');
+            menu.classList.toggle('active');
+        }
+
+        function closeMenu() {
+            const menu = document.getElementById('navMenu');
+            menu.classList.remove('active');
+        }
+
+        // Create colorful floating particles in hero
+        function createParticles() {
+            const hero = document.querySelector('.hero');
+            const colors = ['#ffb3d9', '#a6dcef', '#b8e6d5', '#ffd93d', '#ff6b9d', '#c86dd7'];
+            const shapes = ['💖', '✨', '🌸', '💕', '⭐', '🦋', '🌈', '💫'];
+            
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                
+                // Random between colored dots and emoji shapes
+                if (Math.random() > 0.5) {
+                    particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    particle.style.width = (Math.random() * 10 + 5) + 'px';
+                    particle.style.height = particle.style.width;
+                    particle.style.borderRadius = '50%';
+                } else {
+                    particle.innerHTML = shapes[Math.floor(Math.random() * shapes.length)];
+                    particle.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                    particle.style.background = 'transparent';
                 }
-            });
-        }
-
-        // Touch sparkles for mobile
-        if ('ontouchstart' in window) {
-            document.addEventListener('touchmove', (e) => {
-                if (Math.random() > 0.9) {
-                    const touch = e.touches[0];
-                    createSparkle(touch.clientX, touch.clientY);
-                }
-            });
-        }
-
-        // Generate hearts continuously
-        setInterval(createHeart, 500);
-
-        // Generate stars
-        for (let i = 0; i < 50; i++) {
-            createStar();
-        }
-
-        // Random confetti occasionally
-        setInterval(() => {
-            if (Math.random() > 0.7) {
-                createConfetti();
+                
+                hero.appendChild(particle);
             }
-        }, 1000);
+        }
+
+        createParticles();
+        
+        // Add more particles periodically
+        setInterval(() => {
+            if (document.querySelectorAll('.particle').length < 50) {
+                createParticles();
+            }
+        }, 3000);
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.skill-card, .project-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
     </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
