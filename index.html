@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quỳnh Châu - Portfolio</title>
+    <title>Quỳnh Châu - Tìm kiếm một nửa yêu thương 💕</title>
     <style>
         * {
             margin: 0;
@@ -313,77 +313,10 @@
 
         .about-image {
             width: 100%;
-            max-width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--pink-light));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 8rem;
-            box-shadow: 0 20px 60px rgba(255, 107, 157, 0.3);
+            max-width: 600px;
             margin: 0 auto;
-            overflow: hidden;
-            position: relative;
-            animation: imageFloat 4s ease-in-out infinite;
-            border: 5px solid white;
         }
 
-        @keyframes imageFloat {
-            0%, 100% {
-                transform: translateY(0) rotate(0deg);
-                box-shadow: 0 20px 60px rgba(255, 107, 157, 0.3);
-            }
-            50% {
-                transform: translateY(-20px) rotate(5deg);
-                box-shadow: 0 30px 70px rgba(255, 107, 157, 0.5);
-            }
-        }
-
-        .about-image::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: shine 3s ease-in-out infinite;
-        }
-
-        @keyframes shine {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        .about-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 1;
-        }
-
-        .about-image .placeholder {
-            font-size: 8rem;
-            z-index: 1;
-            animation: emojiRotate 3s ease-in-out infinite;
-        }
-
-        @keyframes emojiRotate {
-            0%, 100% {
-                transform: rotate(0deg) scale(1);
-            }
-            50% {
-                transform: rotate(10deg) scale(1.1);
-            }
-        }
 
         .about-text h3 {
             font-size: 2rem;
@@ -526,31 +459,31 @@
 
         .project-image {
             width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, var(--pink-light), var(--blue-light), var(--green-light));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
+            height: 350px;
+            background: #f0f0f0;
+            display: block;
             position: relative;
             overflow: hidden;
-            animation: gradientRotate 5s ease infinite;
-        }
-
-        @keyframes gradientRotate {
-            0%, 100% {
-                background: linear-gradient(135deg, var(--pink-light), var(--blue-light), var(--green-light));
-            }
-            33% {
-                background: linear-gradient(135deg, var(--blue-light), var(--green-light), var(--pink-light));
-            }
-            66% {
-                background: linear-gradient(135deg, var(--green-light), var(--pink-light), var(--blue-light));
-            }
+            line-height: 0;
         }
 
         .project-card:hover .project-image {
+            transform: scale(1.05);
+        }
+
+        .project-card:hover .project-image img {
             transform: scale(1.1);
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+            transition: transform 0.6s ease;
+            position: relative;
+            z-index: 1;
         }
 
         .project-content {
@@ -741,6 +674,299 @@
             padding: 2rem;
         }
 
+        /* ============================================
+           HIỆU ỨNG PRO
+           ============================================ */
+
+        /* Cursor Trail Effect */
+        .cursor-trail {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            animation: cursorFade 1s ease-out forwards;
+        }
+
+        @keyframes cursorFade {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* Floating Hearts */
+        .floating-heart {
+            position: fixed;
+            font-size: 30px;
+            pointer-events: none;
+            z-index: 9999;
+            animation: floatUpHeart 3s ease-out forwards;
+        }
+
+        @keyframes floatUpHeart {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-200px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Ripple Effect */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(0);
+            animation: rippleEffect 0.6s ease-out;
+            pointer-events: none;
+        }
+
+        @keyframes rippleEffect {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--blue-light));
+            z-index: 10000;
+            transition: width 0.1s ease;
+            box-shadow: 0 2px 10px rgba(255, 107, 157, 0.5);
+        }
+
+        /* ============================================
+           PRO SLIDER STYLES
+           ============================================ */
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 30px;
+            box-shadow: 0 30px 80px rgba(255, 107, 157, 0.4);
+            border: 5px solid white;
+        }
+
+        .slider-wrapper {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            position: relative;
+        }
+
+        .slide {
+            min-width: 100%;
+            height: 600px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .slide.active img {
+            animation: zoomIn 0.8s ease;
+        }
+
+        @keyframes zoomIn {
+            0% {
+                transform: scale(1.2);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .slider-container:hover .slide img {
+            transform: scale(1.05);
+        }
+
+        /* Slider Navigation Buttons */
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .slider-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-50%) scale(1.2);
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.5);
+        }
+
+        .slider-btn.prev {
+            left: 20px;
+        }
+
+        .slider-btn.next {
+            right: 20px;
+        }
+
+        /* Slider Dots */
+        .slider-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid white;
+        }
+
+        .dot.active {
+            background: var(--accent-color);
+            transform: scale(1.4);
+            box-shadow: 0 0 15px var(--accent-color);
+        }
+
+        .dot:hover {
+            background: white;
+            transform: scale(1.2);
+        }
+
+        /* Slide Overlay Effect */
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.3));
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Slide Caption */
+        .slide-caption {
+            position: absolute;
+            bottom: 60px;
+            left: 30px;
+            right: 30px;
+            color: white;
+            z-index: 2;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .slide.active .slide-caption {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-caption h3 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .slide-caption p {
+            font-size: 1.2rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Responsive Slider */
+        @media (max-width: 768px) {
+            .slide {
+                height: 400px;
+            }
+
+            .slider-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .slider-btn.prev {
+                left: 10px;
+            }
+
+            .slider-btn.next {
+                right: 10px;
+            }
+
+            .slide-caption h3 {
+                font-size: 1.5rem;
+            }
+
+            .slide-caption p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .slide {
+                height: 350px;
+            }
+
+            .slider-container {
+                border-radius: 20px;
+            }
+
+            .slide-caption {
+                bottom: 50px;
+                left: 20px;
+                right: 20px;
+            }
+
+            .slide-caption h3 {
+                font-size: 1.2rem;
+            }
+
+            .slide-caption p {
+                font-size: 0.9rem;
+            }
+        }
+
         /* Particles */
         .particle {
             position: absolute;
@@ -806,11 +1032,6 @@
                 text-align: center;
             }
 
-            .about-image {
-                max-width: 200px;
-                height: 200px;
-                font-size: 5rem;
-            }
 
             .section-title {
                 font-size: 2rem;
@@ -843,10 +1064,17 @@
                 padding: 0.8rem 2rem;
                 font-size: 0.9rem;
             }
+
+            .project-image {
+                height: 300px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
     <!-- Navigation -->
     <nav id="navbar">
         <div class="container">
@@ -854,9 +1082,9 @@
             <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
             <ul id="navMenu">
                 <li><a href="#home" onclick="closeMenu()">Trang chủ</a></li>
-                <li><a href="#about" onclick="closeMenu()">Giới thiệu</a></li>
-                <li><a href="#skills" onclick="closeMenu()">Kỹ năng</a></li>
-                <li><a href="#projects" onclick="closeMenu()">Bộ sưu tập</a></li>
+                <li><a href="#about" onclick="closeMenu()">Về mình</a></li>
+                <li><a href="#skills" onclick="closeMenu()">Tiêu chí</a></li>
+                <li><a href="#projects" onclick="closeMenu()">Sở thích</a></li>
                 <li><a href="#contact" onclick="closeMenu()">Liên hệ</a></li>
             </ul>
         </div>
@@ -865,13 +1093,13 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
-            <h1>👋 Xin chào, tôi là Quỳnh Châu</h1>
-            <p class="subtitle">Chuyên gia Thời trang Mẹ và Bé</p>
+            <h1>💕 Xin chào, mình là Quỳnh Châu</h1>
+            <p class="subtitle">Đang tìm kiếm một nửa yêu thương 💖</p>
             <p class="description">
-                Tôi đam mê mang đến những sản phẩm thời trang chất lượng, an toàn và đầy phong cách 
-                cho các bà mẹ và bé yêu, kết hợp giữa sự thoải mái và xu hướng hiện đại.
+                Mình tin rằng tình yêu đích thực đến từ sự chân thành và hiểu nhau. 
+                Nếu bạn cũng đang tìm kiếm một mối quan hệ nghiêm túc, hãy tìm hiểu về mình nhé! 🌸
             </p>
-            <a href="#contact" class="btn">Liên hệ với tôi</a>
+            <a href="#contact" class="btn">Tìm hiểu về mình 💕</a>
         </div>
     </section>
 
@@ -880,21 +1108,53 @@
         <div class="container">
             <h2 class="section-title">Giới thiệu về tôi</h2>
             <div class="about-content">
-                <div class="about-image">
-                    <img src="https://scontent.fhan19-1.fna.fbcdn.net/v/t39.30808-6/558074218_3340538886084330_8603171064522772982_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGFqtQvpSYFTVUcIlfLzrGHYXaud8JrgrBhdq53wmuCsLJU1hdSJgdIaAvqW_t3WSbGnj-p8le8HHO_OY_fW6UV&_nc_ohc=iarzqYuUZKsQ7kNvwF0TlEm&_nc_oc=AdkDJ-NOR2j8ZAxDfayy4JFpgFUOpGG_0G0tRFS6cGKIifXSfhVG9hmVU6c4xJXdXlM&_nc_zt=23&_nc_ht=scontent.fhan19-1.fna&_nc_gid=kIhQkJmFwrGx4aVx_5jG-A&oh=00_AfdM8ReS_CO6SwST30tX9kT4Nt8_kbxeWfLtKa3grUXjSw&oe=69060BC2" alt="Quỳnh Châu" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <span class="placeholder" style="display: none;">👗</span>
+                <!-- PRO IMAGE SLIDER -->
+                <div class="slider-container">
+                    <div class="slider-wrapper" id="sliderWrapper">
+                        <!-- Slide 1 -->
+                        <div class="slide active">
+                            <img src="https://scontent.fhan19-1.fna.fbcdn.net/v/t39.30808-6/558074218_3340538886084330_8603171064522772982_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGFqtQvpSYFTVUcIlfLzrGHYXaud8JrgrBhdq53wmuCsLJU1hdSJgdIaAvqW_t3WSbGnj-p8le8HHO_OY_fW6UV&_nc_ohc=iarzqYuUZKsQ7kNvwF0TlEm&_nc_oc=AdkDJ-NOR2j8ZAxDfayy4JFpgFUOpGG_0G0tRFS6cGKIifXSfhVG9hmVU6c4xJXdXlM&_nc_zt=23&_nc_ht=scontent.fhan19-1.fna&_nc_gid=kIhQkJmFwrGx4aVx_5jG-A&oh=00_AfdM8ReS_CO6SwST30tX9kT4Nt8_kbxeWfLtKa3grUXjSw&oe=69060BC2" alt="Quỳnh Châu">
+                            <div class="slide-caption">
+                                <h3>💖 Quỳnh Châu</h3>
+                                <p>Một nửa yêu thương của bạn</p>
+                            </div>
+                        </div>
+                        <!-- Slide 2 -->
+                        <div class="slide">
+                            <img src="https://scontent.fhan19-1.fna.fbcdn.net/v/t39.30808-6/475723766_3060836807387874_8234701677298496258_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=86c6b0&_nc_eui2=AeEC-dHtepwdXN2MIRT84OzoGKJHC_3Gk1QYokcL_caTVOCUa_3JnJRZ1RJsVeuR4PwAN_QaLpTvjeaz-O_0lWSi&_nc_ohc=4kh7NzXsY7wQ7kNvwFVKbzU&_nc_oc=AdlSt-GH8I77Mwjjrc_fBnZT0Ffy_17VoWxxQnJ0h19k0X8zz53Dtk--DJ02Wgzvx7Y&_nc_zt=23&_nc_ht=scontent.fhan19-1.fna&_nc_gid=RGA3d_-gtLtsUrplZCcm_w&oh=00_Afe1o0RMHszeLbKhUwPg8NUG0L9tya8qdJl4Vgr6VKP0CQ&oe=6906009E" alt="Quỳnh Châu">
+                            <div class="slide-caption">
+                                <h3>🌸 Rạng rỡ</h3>
+                                <p>Nụ cười tỏa nắng</p>
+                            </div>
+                        </div>
+                        <!-- Slide 3 -->
+                        <div class="slide">
+                            <img src="https://scontent.fhan19-1.fna.fbcdn.net/v/t39.30808-6/489425673_3132680520203502_6869733051588433355_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=86c6b0&_nc_eui2=AeEPiwErThPxgPXqs2PnnJfeAFLyBWCZcvAAUvIFYJly8FksNjFYYVHp69EHVTUplvYdU-83E3WLpgrHs6OrJzIQ&_nc_ohc=f5Emy0yeCVkQ7kNvwExisXc&_nc_oc=Adm9DM7R85UXpVMaZN4qIGdORUs8T-zA3_MCySJOpSknlbVoeLBbj5rwLy4KSCBQG3E&_nc_zt=23&_nc_ht=scontent.fhan19-1.fna&_nc_gid=clHHwK8DlVGE3nouJu155w&oh=00_Affxv77lbpmNUcb6Wd3hwdyBu_K3fkX-ik4GtCD0R_yXVQ&oe=690611B3" alt="Quỳnh Châu">
+                            <div class="slide-caption">
+                                <h3>✨ Xinh đẹp</h3>
+                                <p>Tìm kiếm tình yêu chân thành</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation Buttons -->
+                    <button class="slider-btn prev" onclick="changeSlide(-1)">❮</button>
+                    <button class="slider-btn next" onclick="changeSlide(1)">❯</button>
+                    
+                    <!-- Dots Indicator -->
+                    <div class="slider-dots" id="sliderDots"></div>
                 </div>
                 <div class="about-text">
-                    <h3>Xin chào! 🌟</h3>
+                    <h3>Về mình! 🌟</h3>
                     <p>
-                        Tôi là Quỳnh Châu, một người đam mê và có nhiều kinh nghiệm trong lĩnh vực 
-                        thời trang Mẹ và Bé. Tôi luôn tìm kiếm những xu hướng mới nhất và các sản phẩm 
-                        chất lượng để mang lại sự thoải mái và phong cách cho cả mẹ và bé.
+                        Mình là Quỳnh Châu, một cô gái yêu đời, thích khám phá những điều mới mẻ 
+                        và đặc biệt tin vào tình yêu chân thành. Mình làm trong lĩnh vực thời trang mẹ và bé, 
+                        một công việc mang lại nhiều niềm vui và ý nghĩa.
                     </p>
                     <p>
-                        Với sự am hiểu sâu sắc về nhu cầu của các bà mẹ và em bé, tôi cam kết 
-                        mang đến những lựa chọn thời trang an toàn, tiện lợi và đầy phong cách. 
-                        Hãy cùng khám phá các bộ sưu tập của tôi!
+                        Mình mong muốn tìm được một người bạn đời hiểu mình, tôn trọng mình và cùng 
+                        nhau xây dựng một tương lai hạnh phúc. Nếu bạn cũng nghiêm túc với tình yêu, 
+                        hãy để lại thông tin nhé! 💕
                     </p>
                 </div>
             </div>
@@ -904,37 +1164,37 @@
     <!-- Skills Section -->
     <section class="skills" id="skills">
         <div class="container">
-            <h2 class="section-title">Kỹ năng của tôi</h2>
+            <h2 class="section-title">Tiêu chí tìm bạn đời</h2>
             <div class="skills-grid">
                 <div class="skill-card">
-                    <div class="skill-icon">👗</div>
-                    <h3>Thiết kế Thời trang</h3>
-                    <p>Sáng tạo các mẫu thiết kế độc đáo, phù hợp với xu hướng mẹ và bé</p>
+                    <div class="skill-icon">💖</div>
+                    <h3>Chân thành & Trung thực</h3>
+                    <p>Một người luôn thật lòng, không giả dối và tôn trọng người khác</p>
                 </div>
                 <div class="skill-card">
-                    <div class="skill-icon">🧵</div>
-                    <h3>Kiến thức Vải vóc</h3>
-                    <p>Am hiểu về chất liệu vải an toàn, thoáng mát và bền đẹp cho trẻ em</p>
+                    <div class="skill-icon">🎯</div>
+                    <h3>Có mục tiêu rõ ràng</h3>
+                    <p>Biết mình muốn gì trong cuộc sống và có kế hoạch cho tương lai</p>
                 </div>
                 <div class="skill-card">
-                    <div class="skill-icon">👶</div>
-                    <h3>Hiểu biết về Trẻ em</h3>
-                    <p>Nắm bắt tâm lý và nhu cầu của trẻ nhỏ để thiết kế trang phục thoải mái</p>
+                    <div class="skill-icon">😊</div>
+                    <h3>Tích cực & Lạc quan</h3>
+                    <p>Yêu đời, có năng lượng tích cực và luôn nhìn về phía trước</p>
                 </div>
                 <div class="skill-card">
-                    <div class="skill-icon">🛍️</div>
-                    <h3>Marketing & Bán hàng</h3>
-                    <p>Xây dựng chiến lược quảng bá và bán sản phẩm thời trang hiệu quả</p>
+                    <div class="skill-icon">👨‍👩‍👧</div>
+                    <h3>Yêu thương gia đình</h3>
+                    <p>Coi trọng gia đình và mong muốn xây dựng tổ ấm hạnh phúc</p>
                 </div>
                 <div class="skill-card">
                     <div class="skill-icon">🤝</div>
-                    <h3>Tư vấn Khách hàng</h3>
-                    <p>Tư vấn tận tình, giúp khách hàng lựa chọn sản phẩm ưng ý nhất</p>
+                    <h3>Biết chia sẻ & Lắng nghe</h3>
+                    <p>Sẵn sàng chia sẻ và luôn lắng nghe, thấu hiểu đối phương</p>
                 </div>
                 <div class="skill-card">
-                    <div class="skill-icon">✨</div>
-                    <h3>Xu hướng & Sáng tạo</h3>
-                    <p>Luôn cập nhật các xu hướng thời trang mới và áp dụng vào thiết kế</p>
+                    <div class="skill-icon">💪</div>
+                    <h3>Có trách nhiệm</h3>
+                    <p>Chịu trách nhiệm với lời nói và hành động của mình</p>
                 </div>
             </div>
         </div>
@@ -943,41 +1203,47 @@
     <!-- Projects Section -->
     <section class="projects" id="projects">
         <div class="container">
-            <h2 class="section-title">Bộ sưu tập & Dự án</h2>
+            <h2 class="section-title">Sở thích của mình</h2>
             <div class="projects-grid">
                 <div class="project-card">
-                    <div class="project-image">🌸</div>
+                    <div class="project-image">
+                        <img src="https://scontent.fhan19-1.fna.fbcdn.net/v/t39.30808-6/508335162_3212120012259552_5426916078701239290_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGZrao6l-d6SYJRqNbsRc1vifQLTZmyFQiJ9AtNmbIVCA1CNbiH9kTD4cu1EjN_4Ewoxk9wbZa2vnXQ8COAsbZ8&_nc_ohc=mOcIdMcd7_oQ7kNvwFBU_qX&_nc_oc=AdlrInjWHtTm7DUoWptCrm_CCNqqtjNVBpZdcEbNiItIJW4m-DqPu4_GwR5hDiw_uH0&_nc_zt=23&_nc_ht=scontent.fhan19-1.fna&_nc_gid=4gYFOsBDr_pHbhUQ9lErFg&oh=00_AfcRII2G79Co6HcfEqKs51-h2noaV0Q56xCkdVQSsnDOrA&oe=69060C2B" alt="Du lịch">
+                    </div>
                     <div class="project-content">
-                        <h3>Bộ sưu tập Xuân Hè 2025</h3>
-                        <p>Thiết kế và ra mắt bộ sưu tập thời trang mẹ và bé với chất liệu thoáng mát, màu sắc tươi sáng.</p>
+                        <h3>Du lịch & Khám phá</h3>
+                        <p>Thích đi du lịch, khám phá những vùng đất mới, trải nghiệm văn hóa và ẩm thực khác nhau.</p>
                         <div class="project-tags">
-                            <span class="tag">Thiết kế</span>
-                            <span class="tag">Vải cotton</span>
-                            <span class="tag">Xu hướng</span>
+                            <span class="tag">Du lịch</span>
+                            <span class="tag">Phượt</span>
+                            <span class="tag">Check-in</span>
                         </div>
                     </div>
                 </div>
                 <div class="project-card">
-                    <div class="project-image">🍃</div>
+                    <div class="project-image">
+                        <img src="https://scontent.fhan19-1.fna.fbcdn.net/v/t39.30808-6/507638883_3211782935626593_1306247788686594533_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFG11_JlyLtJlzC8C0eNhTUWmHu_VTRZZlaYe79VNFlmY7bmt6BbQ9KPcLq5sqnOAgx1mOhSxw2J5xVKhK528GH&_nc_ohc=phw1dSpKkdUQ7kNvwFSBY2U&_nc_oc=AdmJaf1qDrd34uWOg_q5MOKlB3afatSBjgQij-sYOoQRk9W8oZFbRObhlwvY8PTTGmc&_nc_zt=23&_nc_ht=scontent.fhan19-1.fna&_nc_gid=mFSE1kO1648mKFGJHjlsjQ&oh=00_AfehptUBZu0wrpi3lyWGc7NxUB9giNGaq_TEPU6N8ffD4w&oe=69062E29" alt="Sách & Phim">
+                    </div>
                     <div class="project-content">
-                        <h3>Dòng sản phẩm Organic</h3>
-                        <p>Phát triển dòng sản phẩm thời trang từ chất liệu hữu cơ, an toàn tuyệt đối cho làn da nhạy cảm của bé.</p>
+                        <h3>Đọc sách & Xem phim</h3>
+                        <p>Yêu thích đọc sách, xem phim và chia sẻ những cảm nhận về cuộc sống, tình yêu và hạnh phúc.</p>
                         <div class="project-tags">
-                            <span class="tag">Organic</span>
-                            <span class="tag">An toàn</span>
-                            <span class="tag">Bền vững</span>
+                            <span class="tag">Sách</span>
+                            <span class="tag">Phim</span>
+                            <span class="tag">Cafe</span>
                         </div>
                     </div>
                 </div>
                 <div class="project-card">
-                    <div class="project-image">💝</div>
+                    <div class="project-image">
+                        <img src="https://scontent.fhan19-1.fna.fbcdn.net/v/t39.30808-6/486284189_3109364785868409_846087321553473152_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFhy8Ycc2FwlmhyV3pkqqV3wmY6Aaq9xNLCZjoBqr3E0rKJZA6yMIPb_0nLI9Yry-sMWA8IU10j0lvxawlou9LG&_nc_ohc=nukNuJHr5vsQ7kNvwGmCB54&_nc_oc=AdnwMMf4d6i8fx_jakcMP5mv3tI0ZyDNbLTP9hUUXYx3U-VNeoGoE6S9ZZPruVdgEr0&_nc_zt=23&_nc_ht=scontent.fhan19-1.fna&_nc_gid=DGjLXT845pdwtKMTrhv20g&oh=00_Afcp4SQRdet8TTJO2ZxB4UnewFElVRKmNhNXdAlPJIfiIw&oe=690606B9" alt="Ẩm thực">
+                    </div>
                     <div class="project-content">
-                        <h3>Set đồ Mẹ và Bé</h3>
-                        <p>Thiết kế các set đồ đồng điệu cho mẹ và bé, tạo phong cách thời trang gia đình ấn tượng.</p>
+                        <h3>Ẩm thực & Nấu ăn</h3>
+                        <p>Thích thử những món ăn mới, nấu ăn cho người thân và tận hưởng những khoảnh khắc bên bữa cơm gia đình.</p>
                         <div class="project-tags">
-                            <span class="tag">Set đồ</span>
-                            <span class="tag">Đồng điệu</span>
-                            <span class="tag">Phong cách</span>
+                            <span class="tag">Nấu ăn</span>
+                            <span class="tag">Food tour</span>
+                            <span class="tag">Gia đình</span>
                         </div>
                     </div>
                 </div>
@@ -988,28 +1254,27 @@
     <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="container">
-            <h2 class="section-title">Liên hệ với tôi</h2>
+            <h2 class="section-title">Liên hệ với mình</h2>
             <div class="contact-content">
-                <p>Hãy kết nối với tôi qua các kênh sau:</p>
+                <p>Nếu bạn cảm thấy phù hợp và muốn tìm hiểu thêm, đừng ngần ngại liên hệ với mình nhé! 💕</p>
                 <div class="social-links">
                     <a href="https://www.facebook.com/quynh.chau.792" target="_blank" class="social-link" title="Facebook">📘</a>
-                    <a href="https://linkedin.com" target="_blank" class="social-link" title="LinkedIn">💼</a>
-                    <a href="https://github.com" target="_blank" class="social-link" title="GitHub">🐙</a>
-                    <a href="mailto:quynhchau@example.com" class="social-link" title="Email">✉️</a>
+                    <a href="https://zalo.me/0338350097" target="_blank" class="social-link" title="Zalo">💬</a>
+                    <a href="tel:0338350097" class="social-link" title="Phone">📱</a>
                 </div>
                 <div class="contact-info">
-                    <div class="contact-item">📧 quynhchau@example.com</div>
-                    <div class="contact-item">📱 +84 123 456 789</div>
+                    <div class="contact-item">📘 Facebook: <a href="https://www.facebook.com/quynh.chau.792" target="_blank" style="color: white; text-decoration: underline;">fb.com/quynh.chau.792</a></div>
+                    <div class="contact-item">📱 <a href="tel:0338350097" style="color: white; text-decoration: underline;">0338350097</a></div>
                     <div class="contact-item">📍 Hà Nội, Việt Nam</div>
                 </div>
-                <a href="mailto:quynhchau@example.com" class="btn">Gửi email cho tôi</a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Quỳnh Châu. Made with 💖</p>
+        <p>&copy; 2025 Quỳnh Châu. Made with Love 💖 | Tìm kiếm tình yêu chân thành 🌸</p>
+        <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.8;">Designed by Định Hoàng ✨</p>
     </footer>
 
     <script>
@@ -1108,9 +1373,360 @@
             el.style.transition = 'all 0.6s ease';
             observer.observe(el);
         });
+
+        // ============================================
+        // HIỆU ỨNG PRO - JAVASCRIPT
+        // ============================================
+
+        // 1. Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const scrollProgress = document.getElementById('scrollProgress');
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercentage = (scrollTop / scrollHeight) * 100;
+            scrollProgress.style.width = scrollPercentage + '%';
+        });
+
+        // 2. Cursor Trail Effect
+        let cursorTrailTimeout;
+        document.addEventListener('mousemove', (e) => {
+            if (window.innerWidth > 768) { // Only on desktop
+                const trail = document.createElement('div');
+                trail.classList.add('cursor-trail');
+                const colors = ['#ff6b9d', '#c86dd7', '#ffd93d', '#ffb3d9', '#a6dcef'];
+                trail.style.background = colors[Math.floor(Math.random() * colors.length)];
+                trail.style.left = e.clientX + 'px';
+                trail.style.top = e.clientY + 'px';
+                document.body.appendChild(trail);
+                
+                setTimeout(() => trail.remove(), 1000);
+            }
+        });
+
+        // 3. Floating Hearts on Click
+        document.addEventListener('click', (e) => {
+            const hearts = ['💖', '💕', '💗', '💓', '💝', '💞'];
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+            heart.style.left = e.clientX + 'px';
+            heart.style.top = e.clientY + 'px';
+            document.body.appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 3000);
+        });
+
+        // 4. Ripple Effect on Buttons
+        document.querySelectorAll('.btn, .social-link, .skill-card, .project-card').forEach(element => {
+            element.style.position = 'relative';
+            element.style.overflow = 'hidden';
+            
+            element.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                ripple.classList.add('ripple');
+                
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // 5. 3D Tilt Effect for Cards
+        document.querySelectorAll('.skill-card, .project-card').forEach(card => {
+            card.addEventListener('mousemove', function(e) {
+                if (window.innerWidth > 768) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = (y - centerY) / 10;
+                    const rotateY = (centerX - x) / 10;
+                    
+                    this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-15px)`;
+                }
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+            });
+        });
+
+        // 6. Random Floating Hearts Background
+        setInterval(() => {
+            if (Math.random() > 0.7) {
+                const heart = document.createElement('div');
+                heart.classList.add('floating-heart');
+                const hearts = ['💖', '💕', '💗', '✨', '🌸'];
+                heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.top = '100%';
+                heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+                document.body.appendChild(heart);
+                
+                setTimeout(() => heart.remove(), 3000);
+            }
+        }, 2000);
+
+        // 7. Text Reveal Animation
+        const revealElements = document.querySelectorAll('h1, h2, h3, p');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('reveal-text', 'active');
+                    }, index * 100);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => {
+            el.classList.add('reveal-text');
+            revealObserver.observe(el);
+        });
+
+        // 8. Parallax Effect on Scroll (disabled for project-image)
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.skill-icon');
+            
+            parallaxElements.forEach((element, index) => {
+                const speed = 0.5 + (index * 0.1);
+                const yPos = -(scrolled * speed / 10);
+                if (element.getBoundingClientRect().top < window.innerHeight) {
+                    element.style.transform = `translateY(${yPos}px)`;
+                }
+            });
+        });
+
+        // 9. Add Stars to Hero
+        function createStars() {
+            const hero = document.querySelector('.hero');
+            for (let i = 0; i < 50; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                star.style.width = (Math.random() * 3 + 1) + 'px';
+                star.style.height = star.style.width;
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                hero.appendChild(star);
+            }
+        }
+        createStars();
+
+        // 10. Smooth Counter Animation for Stats (nếu có)
+        function animateValue(element, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                element.innerHTML = Math.floor(progress * (end - start) + start);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // 11. Easter Egg - Konami Code
+        let konamiCode = [];
+        const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+        
+        document.addEventListener('keydown', (e) => {
+            konamiCode.push(e.key);
+            konamiCode = konamiCode.slice(-10);
+            
+            if (konamiCode.join(',') === konamiSequence.join(',')) {
+                // Easter egg activated!
+                for (let i = 0; i < 100; i++) {
+                    setTimeout(() => {
+                        const heart = document.createElement('div');
+                        heart.classList.add('floating-heart');
+                        heart.innerHTML = '💖';
+                        heart.style.left = Math.random() * 100 + '%';
+                        heart.style.top = Math.random() * 100 + '%';
+                        heart.style.fontSize = (Math.random() * 40 + 30) + 'px';
+                        document.body.appendChild(heart);
+                        setTimeout(() => heart.remove(), 3000);
+                    }, i * 50);
+                }
+                alert('💖 Wow! Bạn đã khám phá được easter egg! Chúc bạn may mắn! 🌟');
+            }
+        });
+
+        // 12. Shake Animation on Hover (cho logo)
+        const logo = document.querySelector('.logo');
+        logo.addEventListener('mouseenter', function() {
+            this.style.animation = 'shake 0.5s ease';
+        });
+        
+        logo.addEventListener('animationend', function() {
+            this.style.animation = '';
+        });
+
+        // Add shake keyframe dynamically
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+                20%, 40%, 60%, 80% { transform: translateX(5px); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // 13. Background Music (optional - commented out)
+        // const bgMusic = new Audio('path-to-romantic-music.mp3');
+        // bgMusic.loop = true;
+        // bgMusic.volume = 0.3;
+        // document.body.addEventListener('click', () => bgMusic.play(), { once: true });
+
+        console.log('💖 Website designed with love by Định Hoàng ✨');
+        console.log('🌸 Chúc Quỳnh Châu tìm được tình yêu đích thực! 💕');
+
+        // ============================================
+        // PRO SLIDER FUNCTIONALITY
+        // ============================================
+
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const sliderWrapper = document.getElementById('sliderWrapper');
+        const dotsContainer = document.getElementById('sliderDots');
+        let autoSlideInterval;
+
+        // Create dots
+        function createDots() {
+            slides.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                if (index === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(index));
+                dotsContainer.appendChild(dot);
+            });
+        }
+
+        // Update dots
+        function updateDots() {
+            document.querySelectorAll('.dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        // Change slide
+        function changeSlide(direction) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide += direction;
+            
+            if (currentSlide >= slides.length) currentSlide = 0;
+            if (currentSlide < 0) currentSlide = slides.length - 1;
+            
+            updateSlider();
+            resetAutoSlide();
+        }
+
+        // Go to specific slide
+        function goToSlide(index) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = index;
+            updateSlider();
+            resetAutoSlide();
+        }
+
+        // Update slider position
+        function updateSlider() {
+            sliderWrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
+            slides[currentSlide].classList.add('active');
+            updateDots();
+        }
+
+        // Auto slide
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(() => {
+                changeSlide(1);
+            }, 2000); // Change slide every 2 seconds
+        }
+
+        // Reset auto slide
+        function resetAutoSlide() {
+            clearInterval(autoSlideInterval);
+            startAutoSlide();
+        }
+
+        // Touch/Swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        sliderWrapper.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        sliderWrapper.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                changeSlide(1); // Swipe left
+            }
+            if (touchEndX > touchStartX + 50) {
+                changeSlide(-1); // Swipe right
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+        });
+
+        // Initialize slider
+        createDots();
+        startAutoSlide();
+
+        // Pause auto slide on hover
+        const sliderContainer = document.querySelector('.slider-container');
+        sliderContainer.addEventListener('mouseenter', () => {
+            clearInterval(autoSlideInterval);
+        });
+
+        sliderContainer.addEventListener('mouseleave', () => {
+            startAutoSlide();
+        });
     </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
