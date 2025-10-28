@@ -93,59 +93,55 @@
         }
 
         /* Mobile Performance Optimizations */
-        @media (max-width: 768px) {
-            /* Disable heavy animations on mobile */
-            .particle,
-            .hero-shapes,
-            .floating-emoji,
-            .criteria::before,
-            .hobbies::before,
-            .hobbies::after,
-            .contact::before,
-            .contact::after,
-            .about::before,
-            .about::after {
-                display: none !important;
-            }
+            @media (max-width: 768px) {
+                /* Disable heavy animations on mobile */
+                .particle,
+                .hero-shapes,
+                .floating-emoji,
+                .criteria::before,
+                .hobbies::before,
+                .hobbies::after,
+                .contact::before,
+                .contact::after,
+                .about::before,
+                .about::after {
+                    display: none !important;
+                }
 
-            /* Disable backdrop-filter on mobile (very heavy) */
-            * {
-                backdrop-filter: none !important;
-                -webkit-backdrop-filter: none !important;
-            }
+                /* Disable backdrop-filter on mobile (very heavy) */
+                * {
+                    backdrop-filter: none !important;
+                    -webkit-backdrop-filter: none !important;
+                }
 
-            /* Simplify gradients on mobile */
-            .hero,
-            .about,
-            .hobbies,
-            .criteria,
-            .contact {
-                background-size: 100% 100% !important;
-                animation: none !important;
-            }
+                /* Simplify gradients on mobile */
+                .hero,
+                .about,
+                .hobbies,
+                .criteria,
+                .contact {
+                    background-size: 100% 100% !important;
+                    animation: none !important;
+                }
 
-            /* Disable complex transforms on mobile */
-            .criteria-card:hover .criteria-icon,
-            .stat-card:hover .stat-icon,
-            .hobby-card:hover .hobby-icon {
-                transform: none !important;
-            }
+                /* Disable complex transforms on mobile */
+                .criteria-card:hover .criteria-icon,
+                .stat-card:hover .stat-icon,
+                .hobby-card:hover .hobby-icon {
+                    transform: none !important;
+                }
 
-            /* Simplify hover effects */
-            .criteria-card::before,
-            .criteria-card::after,
-            .stat-card::before,
-            .stat-card::after,
-            .hobby-card::before {
-                display: none !important;
-            }
+                /* Simplify hover effects */
+                .criteria-card::before,
+                .criteria-card::after,
+                .stat-card::before,
+                .stat-card::after,
+                .hobby-card::before {
+                    display: none !important;
+                }
 
-            /* Disable marquee on mobile */
-            .marquee,
-            .marquee-content {
-                animation: none !important;
+                /* Keep marquee animation on mobile - it's smooth! */
             }
-        }
 
         /* ==========================
            SCROLL PROGRESS BAR
@@ -3113,77 +3109,74 @@
         // CUSTOM CURSOR & TRAIL EFFECT - OPTIMIZED
         // ============================================
         
-        if (!isMobile) {
-            // Create custom cursor elements
-            const cursor = document.createElement('div');
-            cursor.className = 'custom-cursor';
-            document.body.appendChild(cursor);
+        // Custom cursor & trail effects - ENABLED FOR ALL DEVICES
+        // Create custom cursor elements
+        const cursor = document.createElement('div');
+        cursor.className = 'custom-cursor';
+        document.body.appendChild(cursor);
 
-            const cursorDot = document.createElement('div');
-            cursorDot.className = 'custom-cursor-dot';
-            document.body.appendChild(cursorDot);
+        const cursorDot = document.createElement('div');
+        cursorDot.className = 'custom-cursor-dot';
+        document.body.appendChild(cursorDot);
 
-            // Track cursor position
-            let mouseX = 0, mouseY = 0;
-            let cursorX = 0, cursorY = 0;
-            let dotX = 0, dotY = 0;
-            let lastTrailTime = 0;
-            const trailThrottle = 40; // Create trail every 40ms for smooth effect
+        // Track cursor position
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+        let dotX = 0, dotY = 0;
+        let lastTrailTime = 0;
+        const trailThrottle = isMobile ? 60 : 40; // Slightly more throttle on mobile
 
-            document.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
 
-                // Throttle trail creation for smooth but performant effect
-                const now = Date.now();
-                if (now - lastTrailTime > trailThrottle) {
-                    lastTrailTime = now;
-                    
-                    // Create trail particle
-                    const trail = document.createElement('div');
-                    trail.className = 'cursor-trail';
-                    trail.style.left = e.clientX + 'px';
-                    trail.style.top = e.clientY + 'px';
-                    document.body.appendChild(trail);
+            // Throttle trail creation for smooth but performant effect
+            const now = Date.now();
+            if (now - lastTrailTime > trailThrottle) {
+                lastTrailTime = now;
+                
+                // Create trail particle
+                const trail = document.createElement('div');
+                trail.className = 'cursor-trail';
+                trail.style.left = e.clientX + 'px';
+                trail.style.top = e.clientY + 'px';
+                document.body.appendChild(trail);
 
-                    // Remove after animation completes
-                    setTimeout(() => trail.remove(), 900);
-                }
-            }, { passive: true });
-
-            // Smooth cursor follow with requestAnimationFrame
-            function animateCursor() {
-                // Smooth follow for cursor ring
-                cursorX += (mouseX - cursorX) * 0.15;
-                cursorY += (mouseY - cursorY) * 0.15;
-                cursor.style.left = cursorX + 'px';
-                cursor.style.top = cursorY + 'px';
-
-                // Faster follow for dot
-                dotX += (mouseX - dotX) * 0.3;
-                dotY += (mouseY - dotY) * 0.3;
-                cursorDot.style.left = dotX + 'px';
-                cursorDot.style.top = dotY + 'px';
-
-                requestAnimationFrame(animateCursor);
+                // Remove after animation completes
+                setTimeout(() => trail.remove(), 900);
             }
-            animateCursor();
+        }, { passive: true });
 
-            // Hide custom cursor when leaving window
-            document.addEventListener('mouseleave', () => {
-                cursor.style.opacity = '0';
-                cursorDot.style.opacity = '0';
-            });
+        // Smooth cursor follow with requestAnimationFrame
+        function animateCursor() {
+            // Smooth follow for cursor ring
+            cursorX += (mouseX - cursorX) * 0.15;
+            cursorY += (mouseY - cursorY) * 0.15;
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
 
-            document.addEventListener('mouseenter', () => {
-                cursor.style.opacity = '1';
-                cursorDot.style.opacity = '1';
-            });
+            // Faster follow for dot
+            dotX += (mouseX - dotX) * 0.3;
+            dotY += (mouseY - dotY) * 0.3;
+            cursorDot.style.left = dotX + 'px';
+            cursorDot.style.top = dotY + 'px';
 
-            console.log('✅ Custom cursor activated (optimized)');
-        } else {
-            console.log('⚡ Custom cursor disabled on mobile');
+            requestAnimationFrame(animateCursor);
         }
+        animateCursor();
+
+        // Hide custom cursor when leaving window
+        document.addEventListener('mouseleave', () => {
+            cursor.style.opacity = '0';
+            cursorDot.style.opacity = '0';
+        });
+
+        document.addEventListener('mouseenter', () => {
+            cursor.style.opacity = '1';
+            cursorDot.style.opacity = '1';
+        });
+
+        console.log('✅ Custom cursor activated on all devices!');
 
         // ============================================
         // ENHANCED SCROLL REVEAL - ALTERNATING SIDES
@@ -3305,23 +3298,21 @@
                 link.style.animation = 'none';
             });
 
-            // Marquee - enable scroll animation (desktop only for performance)
-            if (!isMobile) {
-                const marquee = document.querySelector('.marquee');
-                if (marquee) {
-                    marquee.style.background = 'linear-gradient(90deg, var(--neon-pink), var(--neon-purple), var(--neon-cyan), var(--neon-green), var(--neon-pink))';
-                    marquee.style.backgroundSize = '300% 100%';
-                    marquee.style.animation = 'marqueeGradient 8s linear infinite';
-                }
-
-                const marqueeContent = document.querySelector('.marquee-content');
-                if (marqueeContent) {
-                    marqueeContent.style.animation = 'marqueeScroll 30s linear infinite';
-                }
-                console.log('✅ Marquee animation enabled (desktop)');
-            } else {
-                console.log('⚡ Marquee static on mobile for performance');
+            // Marquee - enable scroll animation on ALL DEVICES
+            const marquee = document.querySelector('.marquee');
+            if (marquee) {
+                marquee.style.background = 'linear-gradient(90deg, var(--neon-pink), var(--neon-purple), var(--neon-cyan), var(--neon-green), var(--neon-pink))';
+                marquee.style.backgroundSize = '300% 100%';
+                marquee.style.animation = 'marqueeGradient 8s linear infinite';
             }
+
+            const marqueeContent = document.querySelector('.marquee-content');
+            if (marqueeContent) {
+                // Slightly slower on mobile for smoother performance
+                const scrollSpeed = isMobile ? '35s' : '30s';
+                marqueeContent.style.animation = `marqueeScroll ${scrollSpeed} linear infinite`;
+            }
+            console.log('✅ Marquee animation enabled on all devices!');
 
             console.log('✅ All PRO animations activated!');
         }, 100);
