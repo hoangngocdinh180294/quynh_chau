@@ -557,6 +557,29 @@ body {
   color: rgb(var(--ta-600)); line-height: 1.65; margin-bottom: 1.5rem; padding: 0 1rem; text-align: center;
 }
 
+/* Countdown */
+.cd-wrap {
+  display: flex; justify-content: center; gap: .625rem;
+  margin-bottom: 1.75rem;
+}
+.cd-box {
+  display: flex; flex-direction: column; align-items: center;
+  min-width: 4rem; padding: .75rem .5rem .5rem;
+  background: white; border-radius: .625rem;
+  border: 1px solid rgba(var(--ta-200),.6);
+  box-shadow: 0 2px 8px rgba(163,29,22,.08);
+}
+.cd-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.75rem; font-weight: 700;
+  color: rgb(var(--ta-600)); line-height: 1;
+}
+.cd-lbl {
+  font-family: 'Montserrat', sans-serif;
+  font-size: .5625rem; font-weight: 600; letter-spacing: .1em;
+  color: rgb(var(--ta-400)); margin-top: .3rem; text-transform: uppercase;
+}
+
 /* Timeline events overlay */
 .tl-events {
   position: relative; border-radius: 1rem; overflow: hidden;
@@ -1325,6 +1348,13 @@ body {
             <div class="tl-qs-line"></div>
           </div>
           <p class="tl-quote-txt">"A successful marriage requires falling in love many times, always with the same person."</p>
+          <!-- Countdown -->
+          <div class="cd-wrap">
+            <div class="cd-box"><span class="cd-num" id="cdDays">--</span><span class="cd-lbl">Ngày</span></div>
+            <div class="cd-box"><span class="cd-num" id="cdHours">--</span><span class="cd-lbl">Giờ</span></div>
+            <div class="cd-box"><span class="cd-num" id="cdMins">--</span><span class="cd-lbl">Phút</span></div>
+            <div class="cd-box"><span class="cd-num" id="cdSecs">--</span><span class="cd-lbl">Giây</span></div>
+          </div>
         </div>
         <!-- Timeline events -->
         <div class="tl-events reveal-up">
@@ -1743,6 +1773,31 @@ function buildCalendar(){
 }
 
 /* ── Scroll Reveal ── */
+/* ── Countdown ── */
+(function(){
+  var wedding = new Date('2027-03-07T10:00:00');
+  function tick(){
+    var now  = new Date();
+    var diff = wedding - now;
+    if(diff <= 0){ diff = 0; }
+    var d = Math.floor(diff / 86400000);
+    var h = Math.floor((diff % 86400000) / 3600000);
+    var m = Math.floor((diff % 3600000)  / 60000);
+    var s = Math.floor((diff % 60000)    / 1000);
+    function pad(n){ return n < 10 ? '0'+n : ''+n; }
+    var elD = document.getElementById('cdDays');
+    var elH = document.getElementById('cdHours');
+    var elM = document.getElementById('cdMins');
+    var elS = document.getElementById('cdSecs');
+    if(elD) elD.textContent = d;
+    if(elH) elH.textContent = pad(h);
+    if(elM) elM.textContent = pad(m);
+    if(elS) elS.textContent = pad(s);
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+
 /* ── Story accordion ── */
 document.querySelectorAll('.story-item-hdr').forEach(function(hdr){
   hdr.addEventListener('click', function(){
@@ -1808,6 +1863,8 @@ document.getElementById('rsvpBtn').addEventListener('click', function(){
 
 /* ── Guestbook – lưu localStorage ── */
 var GB_KEY = 'wedding_guestbook';
+var GB_PAGE_SIZE = 5;
+var gbShowing = GB_PAGE_SIZE;
 var entries = JSON.parse(localStorage.getItem(GB_KEY) || '[]');
 renderGb();
 document.getElementById('gbSend').addEventListener('click', function(){
@@ -1821,8 +1878,6 @@ document.getElementById('gbSend').addEventListener('click', function(){
   document.getElementById('gbName').value = '';
   document.getElementById('gbMsg').value  = '';
 });
-var GB_PAGE_SIZE = 5;
-var gbShowing = GB_PAGE_SIZE;
 function renderGb(){
   var empty   = document.getElementById('gbEmpty');
   var c       = document.getElementById('gbEntries');
