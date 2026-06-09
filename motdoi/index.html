@@ -600,9 +600,9 @@ body {
 /* ════════════════════════════════════
    SECTION 6 – LOVE STORY
 ════════════════════════════════════ */
-.story-sec { padding: 2rem 1rem; position: relative; }
-.story-branch-l { position: absolute; left: 0; top: 0; width: 35%; opacity: .15; pointer-events: none; }
-.story-branch-r { position: absolute; right: 0; bottom: 0; width: 35%; opacity: .15; pointer-events: none; transform: scaleX(-1); }
+.story-sec { padding: 2rem 1rem; position: relative; background: rgb(var(--ts-50)); }
+.story-branch-l { position: absolute; left: 0; top: 0; width: 35%; opacity: .12; pointer-events: none; }
+.story-branch-r { position: absolute; right: 0; bottom: 0; width: 35%; opacity: .12; pointer-events: none; transform: scaleX(-1); }
 .story-hdr { text-align: center; margin-bottom: 2rem; }
 .story-title {
   font-family: 'Playfair Display', serif; font-size: 1.875rem;
@@ -612,21 +612,68 @@ body {
 .story-sep-row { display: flex; justify-content: center; gap: .5rem; margin-top: .75rem; }
 .story-sep-line { height: 1px; width: 2rem; background: rgba(var(--ta-300),.6); align-self: center; }
 .story-sep-dot  { width: .375rem; height: .375rem; border-radius: 50%; background: rgb(var(--ta-300)); }
-.story-items { display: flex; flex-direction: column; }
-.story-item { position: relative; padding-left: 1.25rem; padding-bottom: 2.5rem; }
-.story-item::before {
-  content: ''; position: absolute; left: 0; top: .375rem; bottom: 0;
-  width: 1px; background: linear-gradient(to bottom, rgb(var(--ta-300)), rgba(var(--ta-300),.1));
+
+/* Accordion items */
+.story-items { display: flex; flex-direction: column; gap: .75rem; position: relative; z-index: 1; }
+.story-item { border-radius: .75rem; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+.story-item-hdr {
+  display: grid; grid-template-columns: 3rem 1fr 2.25rem;
+  align-items: center; gap: .75rem;
+  padding: 1rem 1rem 1rem .875rem;
+  background: white; border: 1px solid rgba(var(--ta-200),.5);
+  border-radius: .75rem; cursor: pointer;
+  transition: background .2s;
 }
-.story-item:last-child::before { display: none; }
-.story-dot {
-  position: absolute; left: -4px; top: .25rem;
-  width: .5rem; height: .5rem; border-radius: 50%;
-  background: rgb(var(--ta-400)); border: 2px solid rgb(var(--ts-100));
+.story-item.open .story-item-hdr {
+  border-radius: .75rem .75rem 0 0;
+  border-bottom-color: transparent;
 }
-.story-year  { font-family: 'Montserrat', sans-serif; font-size: .75rem; font-weight: 600; text-transform: uppercase; letter-spacing: .15em; color: rgb(var(--ta-400)); margin-bottom: .25rem; }
-.story-event { font-family: 'Playfair Display', serif; font-size: 1.125rem; color: rgb(var(--ta-700)); margin-bottom: .375rem; }
-.story-desc  { font-family: 'Montserrat', sans-serif; font-size: .8125rem; color: rgba(var(--ta-800),.65); line-height: 1.7; }
+.story-num {
+  width: 2.75rem; height: 2.75rem; border-radius: 50%; flex-shrink: 0;
+  border: 1.5px solid rgba(var(--ta-300),.5);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Montserrat',sans-serif; font-size: .875rem;
+  font-weight: 600; color: rgb(var(--ta-600));
+}
+.story-item-meta { min-width: 0; }
+.story-year  {
+  font-family: 'Montserrat', sans-serif; font-size: .6875rem; font-weight: 600;
+  letter-spacing: .06em; color: rgb(var(--ta-500)); margin-bottom: .2rem;
+}
+.story-event {
+  font-family: 'Playfair Display', serif; font-size: 1.0625rem;
+  color: rgb(var(--ta-800)); font-weight: 400;
+}
+.story-chevron {
+  width: 2rem; height: 2rem; border-radius: 50%;
+  border: 1px solid rgba(var(--ta-200),.7);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; transition: transform .3s;
+  background: white;
+}
+.story-item.open .story-chevron { transform: rotate(180deg); }
+.story-body {
+  max-height: 0; overflow: hidden;
+  transition: max-height .35s ease;
+  background: white;
+  border: 1px solid rgba(var(--ta-200),.7);
+  border-top: none; border-radius: 0 0 .75rem .75rem;
+}
+.story-item.open .story-body { max-height: 400px; }
+.story-body-inner {
+  padding: 1rem 1rem 1.25rem 1.25rem;
+}
+.story-body-sep {
+  display: flex; justify-content: center; margin-bottom: .875rem;
+}
+.story-body-sep-dot {
+  width: .375rem; height: .375rem; border-radius: 50%;
+  background: rgb(var(--ta-300));
+}
+.story-desc {
+  font-family: 'Montserrat', sans-serif; font-size: .8125rem;
+  color: rgba(var(--ta-700),.85); line-height: 1.8;
+}
 
 /* ════════════════════════════════════
    SECTION 7 – GALLERY (masonry columns-2, y hệt source gốc)
@@ -709,34 +756,55 @@ body {
   opacity: .7;
 }
 
+/* Ảnh đôi trên guestbook */
+.gb-couple-img {
+  width: 100%; aspect-ratio: 4/3; object-fit: cover;
+  border-radius: .75rem; margin-bottom: 1.25rem;
+  display: block;
+}
+
 /* Entries */
-.gb-entries { display: flex; flex-direction: column; gap: .75rem; }
+.gb-entries { display: flex; flex-direction: column; gap: .625rem; }
 .gb-entry {
-  display: flex; gap: .75rem; padding: .875rem;
-  border-radius: .75rem; background: rgb(var(--ts-100));
+  padding: .875rem 1rem;
+  border: 1px solid rgba(var(--ta-200),.6);
+  border-radius: .75rem;
+  background: #fff;
 }
-.gb-avatar {
-  width: 2.5rem; height: 2.5rem; border-radius: 50%; flex-shrink: 0;
-  background: linear-gradient(135deg, rgb(var(--ta-400)), rgb(var(--ta-600)));
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'svnQuarzo','Playfair Display',serif;
-  font-size: 1.1rem; color: white; font-weight: 400;
+.gb-entry-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: .3rem;
 }
-.gb-entry-body { flex: 1; min-width: 0; }
 .gb-entry-name {
   font-family: 'Montserrat',sans-serif;
-  font-size: .8125rem; font-weight: 600; color: rgb(var(--ta-700));
-  margin-bottom: .25rem;
+  font-size: .875rem; font-weight: 700; color: #3d0a0a;
+}
+.gb-entry-time {
+  font-family: 'Montserrat',sans-serif;
+  font-size: .75rem; color: #c47a7a;
+  white-space: nowrap; margin-left: .5rem;
 }
 .gb-entry-msg {
   font-family: 'Montserrat',sans-serif;
-  font-size: .8125rem; color: rgba(var(--ta-800),.7); line-height: 1.6;
+  font-size: .8125rem; color: rgba(var(--ta-700),.8); line-height: 1.65;
 }
 .gb-empty {
   text-align: center; padding: 2rem 1rem;
   font-family: 'Montserrat',sans-serif; font-size: .875rem;
   color: rgb(var(--ta-300)); font-style: italic;
 }
+/* Nút xem thêm */
+.gb-more-btn {
+  display: flex; align-items: center; gap: .375rem; justify-content: center;
+  margin: 1rem auto 0;
+  padding: .5rem 1.5rem; border-radius: 2rem;
+  border: 1px solid rgba(var(--ta-300),.7);
+  background: white; cursor: pointer;
+  font-family: 'Montserrat',sans-serif; font-size: .8125rem;
+  color: rgb(var(--ta-600)); transition: all .2s;
+}
+.gb-more-btn:hover { background: rgb(var(--ts-100)); }
+.gb-more-btn.dn { display: none; }
 
 /* ════════════════════════════════════
    SECTION 9 – RSVP
@@ -1315,37 +1383,90 @@ body {
         <img src="pattern/nhanh cay to ben trai.svg" class="story-branch-l" alt="" aria-hidden="true"/>
         <img src="pattern/nhanh cay to ben phai.svg" class="story-branch-r" alt="" aria-hidden="true"/>
         <div class="story-hdr reveal-down">
-          <h2 class="story-title">Chuyện tình yêu</h2>
-          <p class="story-sub">Hành trình của chúng mình</p>
+          <h2 class="story-title">Câu chuyện của chúng tôi</h2>
+          <p class="story-sub">Một hành trình tình yêu từng bước một</p>
           <div class="story-sep-row">
             <div class="story-sep-line"></div><div class="story-sep-dot"></div><div class="story-sep-line"></div>
           </div>
         </div>
-        <div class="story-items">
-          <div class="story-item reveal-up">
-            <div class="story-dot"></div>
-            <p class="story-year">2020</p>
-            <p class="story-event">Gặp Gỡ</p>
-            <p class="story-desc">Chúng tôi gặp nhau lần đầu trong một buổi sáng mùa thu. Ánh mắt đầu tiên như nói lên điều gì đó thật đặc biệt.</p>
+        <div class="story-items reveal-up">
+
+          <div class="story-item open">
+            <div class="story-item-hdr">
+              <div class="story-num">01</div>
+              <div class="story-item-meta">
+                <p class="story-year">2022</p>
+                <p class="story-event">Gặp nhau</p>
+              </div>
+              <div class="story-chevron">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgb(163,29,22)" stroke-width="2"><path d="m18 15-6-6-6 6"/></svg>
+              </div>
+            </div>
+            <div class="story-body">
+              <div class="story-body-inner">
+                <div class="story-body-sep"><div class="story-body-sep-dot"></div></div>
+                <p class="story-desc">Chúng mình vào cùng công ty từ năm 2022. Nhưng mãi đến nửa cuối năm 2023 mới thực sự biết đến nhau, khi cùng diễn chung một tiết mục văn nghệ. Từ những buổi tập luyện, dần dần quen thân hơn, rồi nhắn tin, rep story qua lại. Lúc nào không hay, lại thích nhau mất rồi.</p>
+              </div>
+            </div>
           </div>
-          <div class="story-item reveal-up">
-            <div class="story-dot"></div>
-            <p class="story-year">Mùa thu 2022</p>
-            <p class="story-event">Tình Bạn Nở Rộ</p>
-            <p class="story-desc">Từ những buổi cà phê sáng đến những cuộc trò chuyện dài, chúng tôi dần hiểu nhau hơn qua từng ngày.</p>
+
+          <div class="story-item">
+            <div class="story-item-hdr">
+              <div class="story-num">02</div>
+              <div class="story-item-meta">
+                <p class="story-year">Mùa thu 2023</p>
+                <p class="story-event">Tỏ tình</p>
+              </div>
+              <div class="story-chevron">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgb(163,29,22)" stroke-width="2"><path d="m18 15-6-6-6 6"/></svg>
+              </div>
+            </div>
+            <div class="story-body">
+              <div class="story-body-inner">
+                <div class="story-body-sep"><div class="story-body-sep-dot"></div></div>
+                <p class="story-desc">Sau những tháng ngày nhắn tin và gặp gỡ, Ngọc Định đã dũng cảm nói lên cảm xúc của mình. Một buổi chiều đơn giản nhưng đáng nhớ mãi trong tim cả hai.</p>
+              </div>
+            </div>
           </div>
-          <div class="story-item reveal-up">
-            <div class="story-dot"></div>
-            <p class="story-year">Cuối 2023</p>
-            <p class="story-event">Yêu Nhau</p>
-            <p class="story-desc">Trái tim mách bảo rằng đây chính là người mình đã chờ đợi suốt bấy lâu, bên một hồ nước yên bình vào buổi chiều thu.</p>
+
+          <div class="story-item">
+            <div class="story-item-hdr">
+              <div class="story-num">03</div>
+              <div class="story-item-meta">
+                <p class="story-year">2024 – 2025</p>
+                <p class="story-event">Những ngày yêu nhau</p>
+              </div>
+              <div class="story-chevron">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgb(163,29,22)" stroke-width="2"><path d="m18 15-6-6-6 6"/></svg>
+              </div>
+            </div>
+            <div class="story-body">
+              <div class="story-body-inner">
+                <div class="story-body-sep"><div class="story-body-sep-dot"></div></div>
+                <p class="story-desc">Hai năm bên nhau đong đầy kỷ niệm — những chuyến đi, những bữa ăn, những buổi chiều lang thang. Mỗi ngày trôi qua càng thêm chắc chắn rằng đây là người mình muốn gắn bó cả đời.</p>
+              </div>
+            </div>
           </div>
-          <div class="story-item reveal-up">
-            <div class="story-dot"></div>
-            <p class="story-year">Tháng 12, 2025</p>
-            <p class="story-event">Cầu Hôn ♥</p>
-            <p class="story-desc">Dưới ánh hoàng hôn, Ngọc Định quỳ xuống đặt câu hỏi quan trọng nhất cuộc đời — Quỳnh Châu gật đầu với nụ cười rạng rỡ.</p>
+
+          <div class="story-item">
+            <div class="story-item-hdr">
+              <div class="story-num">04</div>
+              <div class="story-item-meta">
+                <p class="story-year">Giữa tháng 12/2025</p>
+                <p class="story-event">Cầu hôn</p>
+              </div>
+              <div class="story-chevron">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgb(163,29,22)" stroke-width="2"><path d="m18 15-6-6-6 6"/></svg>
+              </div>
+            </div>
+            <div class="story-body">
+              <div class="story-body-inner">
+                <div class="story-body-sep"><div class="story-body-sep-dot"></div></div>
+                <p class="story-desc">Dưới ánh đèn lung linh, Ngọc Định quỳ xuống đặt câu hỏi quan trọng nhất cuộc đời — Quỳnh Châu gật đầu với nụ cười rạng rỡ và nước mắt hạnh phúc.</p>
+              </div>
+            </div>
           </div>
+
         </div>
       </section>
 
@@ -1378,12 +1499,21 @@ body {
         </div>
       </section>
 
-      <!-- 8. GUESTBOOK – y hệt source gốc -->
+      <!-- 8. GUESTBOOK -->
       <section class="gb-sec">
         <div class="gb-hdr reveal-down">
           <h2 class="gb-title">Sổ Lưu Bút</h2>
-          <p class="gb-sub">Ký tên &amp; gửi lời chúc đến cặp đôi</p>
+          <p class="gb-sub">Những lời chúc dành cho chúng tôi</p>
         </div>
+
+        <!-- Ảnh đôi -->
+        <img src="images/26d486c7-1a08-462e-982a-f5b338fefe86.jpg" alt="" class="gb-couple-img reveal-up" loading="lazy"/>
+
+        <!-- Thông báo cần link cá nhân -->
+        <p style="text-align:center;font-family:'Montserrat',sans-serif;font-size:.8125rem;color:rgb(var(--ta-400));margin-bottom:1.25rem;display:flex;align-items:center;justify-content:center;gap:.375rem;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Vui lòng mở link thiệp cá nhân để ký tên &amp; gửi lời chúc
+        </p>
 
         <!-- Form viết lời chúc -->
         <div class="gb-form-wrap reveal-up">
@@ -1398,15 +1528,14 @@ body {
           </div>
         </div>
 
-        <!-- Ảnh Save the Date nhỏ dưới form giống source gốc -->
-        <div style="display:flex;justify-content:center;margin-bottom:1.5rem;">
-          <img src="images/save-the-date-2.png" alt="Save the Date" class="gb-save-img" loading="lazy"/>
-        </div>
-
         <!-- Danh sách lời chúc -->
         <div class="gb-entries" id="gbEntries">
           <div class="gb-empty" id="gbEmpty">Chưa có lời chúc nào · Hãy là người đầu tiên!</div>
         </div>
+        <button class="gb-more-btn dn" id="gbMore">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+          Xem thêm
+        </button>
       </section>
 
       <!-- 9. RSVP -->
@@ -1614,6 +1743,16 @@ function buildCalendar(){
 }
 
 /* ── Scroll Reveal ── */
+/* ── Story accordion ── */
+document.querySelectorAll('.story-item-hdr').forEach(function(hdr){
+  hdr.addEventListener('click', function(){
+    var item = this.closest('.story-item');
+    var isOpen = item.classList.contains('open');
+    document.querySelectorAll('.story-item').forEach(function(i){ i.classList.remove('open'); });
+    if(!isOpen) item.classList.add('open');
+  });
+});
+
 function initReveal(){
   var classes = ['reveal-up','reveal-down','reveal-scale','reveal-left','reveal-right'];
   var all = [];
@@ -1682,23 +1821,34 @@ document.getElementById('gbSend').addEventListener('click', function(){
   document.getElementById('gbName').value = '';
   document.getElementById('gbMsg').value  = '';
 });
+var GB_PAGE_SIZE = 5;
+var gbShowing = GB_PAGE_SIZE;
 function renderGb(){
-  var empty = document.getElementById('gbEmpty');
-  var c     = document.getElementById('gbEntries');
+  var empty   = document.getElementById('gbEmpty');
+  var c       = document.getElementById('gbEntries');
+  var moreBtn = document.getElementById('gbMore');
   if(empty) empty.style.display = entries.length ? 'none' : 'block';
   c.querySelectorAll('.gb-entry').forEach(function(el){ el.remove(); });
-  entries.forEach(function(e){
+  var visible = entries.slice(0, gbShowing);
+  visible.forEach(function(e){
+    var d = new Date(e.time);
+    var dateStr = (d.getDate()) + '/' + (d.getMonth()+1) + '/' + d.getFullYear();
     var div = document.createElement('div');
     div.className = 'gb-entry';
     div.innerHTML =
-      '<div class="gb-avatar">' + e.name.charAt(0).toUpperCase() + '</div>' +
-      '<div class="gb-entry-body">' +
-        '<p class="gb-entry-name">' + e.name + '</p>' +
-        '<p class="gb-entry-msg">' + e.msg + '</p>' +
-      '</div>';
+      '<div class="gb-entry-header">' +
+        '<span class="gb-entry-name">' + e.name + '</span>' +
+        '<span class="gb-entry-time">' + dateStr + '</span>' +
+      '</div>' +
+      '<p class="gb-entry-msg">' + e.msg + '</p>';
     c.appendChild(div);
   });
+  if(moreBtn) moreBtn.classList.toggle('dn', entries.length <= gbShowing);
 }
+document.getElementById('gbMore').addEventListener('click', function(){
+  gbShowing += GB_PAGE_SIZE;
+  renderGb();
+});
 
 })();
 </script>
