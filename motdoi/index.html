@@ -50,6 +50,42 @@
   --ta-pattern-filter: invert(1) brightness(0.45) sepia(1) hue-rotate(330deg) saturate(4);
   --ta-btn-bg: linear-gradient(135deg, rgb(185 82 77), rgb(163 29 22));
   --ta-btn-shadow: 0 4px 16px rgba(163,29,22,0.3);
+      --ta-50: 247 250 244;
+    --ta-100: 226 237 217;
+    --ta-200: 197 217 183;
+    --ta-300: 159 191 139;
+    --ta-400: 109 156 85;
+    --ta-500: 82 118 58;
+    --ta-600: 63 90 40;
+    --ta-700: 46 66 27;
+    --ta-800: 39 50 28;
+    --ta-900: 27 36 18;
+    --ta-950: 16 21 10;
+    --ts-50: 254 252 247;
+    --ts-100: 249 244 228;
+    --ts-200: 241 228 198;
+    --ts-300: 229 207 162;
+    --ts-400: 213 180 115;
+    --ts-700: 140 103 40;
+    --ts-900: 83 58 18;
+    --ts-950: 49 33 9;
+    --primary: 92 34% 30%;
+    --primary-foreground: 41 60% 82%;
+    --ring: 92 34% 30%;
+    --ta-seal-bg: radial-gradient(circle at 38% 35%, rgb(109 156 85), rgb(63 90 40));
+    --ta-seal-shadow: 0 4px 24px rgba(82, 118, 58, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    --ta-btn-bg: linear-gradient(135deg, rgb(109 156 85), rgb(82 118 58));
+    --ta-btn-shadow: 0 4px 16px rgba(82, 118, 58, 0.3);
+    --ta-btn-shadow-hover: 0 6px 24px rgba(82, 118, 58, 0.45);
+    --ta-flap-fill: rgba(82, 118, 58, 0.06);
+    --ta-flap-stroke: rgba(82, 118, 58, 0.22);
+    --ta-flap-stroke-wide: rgba(82, 118, 58, 0.07);
+    --ta-flap-bottom-fill: rgba(82, 118, 58, 0.05);
+    --ta-flap-bottom-stroke: rgba(82, 118, 58, 0.16);
+    --ta-pattern-filter: invert(1) brightness(0.45) sepia(1) hue-rotate(60deg) saturate(3.5);
+    --ta-canvas-grad-0: #27321c;
+    --ta-canvas-grad-50: #3d5229;
+    --ta-canvas-grad-100: #2e3e1f;
 }
 
 /* ════ RESET ════ */
@@ -148,7 +184,7 @@ body {
 /* Cánh trái 70% */
 .cv-l {
   position: absolute; left: 0; top: 0; height: 100%; width: 70%;
-  background-color: rgb(78,12,9);
+  background-color: rgb(39, 50, 28);
   overflow: hidden;
 }
 .cv-l-pat {
@@ -245,7 +281,7 @@ body {
 /* Cánh phải 30% */
 .cv-r {
   position: absolute; right: 0; top: 0; height: 100%; width: 30%;
-  background-color: rgb(78,12,9);
+  background-color: rgb(39, 50, 28);
 }
 .cv-r-pat {
   position: absolute; inset: 0; pointer-events: none;
@@ -280,7 +316,7 @@ body {
 }
 .hero-ov-bot {
   position: absolute; bottom: 0; left: 0; right: 0; height: 10rem; z-index: 3;
-  background: linear-gradient(to bottom, transparent 0%, rgba(78,12,9,.15) 40%, rgba(78,12,9,.6) 70%, rgb(78,12,9) 100%);
+  background: linear-gradient(to bottom, transparent 0%, rgba(78,12,9,.15) 40%, rgba(78,12,9,.6) 70%, rgb(39, 50, 28) 100%);
 }
 .hero-bottom {
   position: absolute; bottom: 0; left: 0; right: 0; z-index: 10;
@@ -316,7 +352,7 @@ body {
 .couple-sec {
   position: relative; overflow: hidden;
   padding: 2.5rem 1.25rem;
-  background-color: rgb(78,12,9);
+  background-color: rgb(39, 50, 28);
 }
 .couple-fl { position: absolute; left: 0; bottom: 0; opacity: .2; max-width: 35%; max-height: 70%; z-index: 0; pointer-events: none; }
 .couple-fr { position: absolute; right: 0; top: 0; opacity: .2; max-width: 35%; max-height: 70%; z-index: 0; pointer-events: none; }
@@ -339,7 +375,7 @@ body {
 .cc-label {
   position: absolute; bottom: 0; left: 0; right: 0;
   padding: 1rem 1rem 1rem;
-  background: linear-gradient(to top, rgba(78,12,9,.85) 0%, rgba(78,12,9,.4) 50%, transparent 100%);
+  background: linear-gradient(to top, rgba(39, 50, 28, 0.85) 0%, rgba(39, 50, 28, 0.4) 50%, transparent 100%);
 }
 .cc-label-r { align-items: flex-end; }
 .cc-label { display: flex; flex-direction: column; }
@@ -583,7 +619,7 @@ body {
 /* Timeline events overlay */
 .tl-events {
   position: relative; border-radius: 1rem; overflow: hidden;
-  background-image: url('images/26d486c7-1a08-462e-982a-f5b338fefe86.jpg');
+  background-image: url('images/file_ok/QBX_1609.jpg');
   background-size: cover; background-position: 50% 50%;
 }
 .tl-events-ov { position: absolute; inset: 0; background: rgba(40,7,5,.78); }
@@ -610,7 +646,7 @@ body {
 .tl-row { position: relative; display: grid; grid-template-columns: 4rem 2.5rem auto; align-items: center; gap: .75rem; }
 .tl-time { text-align: right; font-family: 'Montserrat', sans-serif; font-size: .875rem; font-weight: 600; letter-spacing: .05em; color: rgb(237,225,217); }
 .tl-dot-wrap { position: relative; display: flex; align-items: center; justify-content: center; z-index: 10; }
-.tl-dot-bg1  { position: absolute; width: 3.5rem; height: 3.5rem; border-radius: 50%; background: rgb(78,12,9); }
+.tl-dot-bg1  { position: absolute; width: 3.5rem; height: 3.5rem; border-radius: 50%; background: rgb(39, 50, 28); }
 .tl-dot-bg2  { position: absolute; width: 2.5rem; height: 2.5rem; border-radius: 50%; border: 1px solid rgba(237,225,217,.2); }
 .tl-dot-icon {
   position: relative; width: 2rem; height: 2rem; border-radius: 50%;
@@ -1190,7 +1226,7 @@ body {
           </div>
         </div>
         <div class="couple-card reveal-up">
-          <img src="images/file_ok/QBX_1963.jpg" alt="Cô dâu"/>
+          <img src="images/file_ok/QBX_1686.jpg" alt="Cô dâu"/>
           <div class="cc-label cc-label-r">
             <span class="cc-role">Cô dâu</span>
             <span class="cc-name">Trần Thị Quỳnh Châu</span>
@@ -1306,7 +1342,7 @@ body {
         </div>
         <!-- Ảnh Just Married -->
         <div class="invite-photo-wrap reveal-scale">
-          <img src="images/file_ok/QBX_2098.jpg" alt="" class="invite-photo"/>
+          <img src="images/file_ok/QBX_1751.jpg" alt="" class="invite-photo"/>
           <div class="invite-photo-ov"></div>
           <div class="just-married">
             <p class="just-txt">Just</p>
