@@ -28,7 +28,7 @@
   (function(){
     function pad(n){ return n < 10 ? '0' + n : '' + n; }
     var now = new Date();
-    var SHARE_VERSION = '' + now.getFullYear() + pad(now.getMonth() + 1) + pad(now.getDate());
+    var SHARE_VERSION = '' + now.getFullYear() + pad(now.getMonth() + 1) + pad(now.getDate()) + pad(now.getHours()) + pad(now.getMinutes());
     var url = new URL(window.location.href);
     if(url.searchParams.get('v') !== SHARE_VERSION){
       url.searchParams.set('v', SHARE_VERSION);
