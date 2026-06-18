@@ -758,13 +758,16 @@ body {
   aspect-ratio: 1 / 1;
   position: relative;
   cursor: pointer;
+  will-change: transform;
 }
 .gallery-masonry-item img {
   width: 100%; height: 100%; display: block;
   object-fit: cover;
-  transition: transform .5s ease;
+  transition: transform .3s ease;
+  will-change: transform;
+  transform: translateZ(0);
 }
-.gallery-masonry-item:hover img { transform: scale(1.05); }
+.gallery-masonry-item:hover img { transform: scale(1.05) translateZ(0); }
 
 /* ════════════════════════════════════
    SECTION 8 – GUESTBOOK (y hệt source gốc)
@@ -1318,7 +1321,7 @@ body {
             <div class="cer-sep-line"></div>
           </div>
           <!-- Tiệc cưới -->
-          <!-- <p class="cer-lbl">Tiệc cưới</p>
+          <p class="cer-lbl">Tiệc cưới</p>
           <div class="cer-time-row">
             <div class="cer-block">
               <div class="cer-left">
@@ -1338,7 +1341,7 @@ body {
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
               Bản đồ
             </button>
-          </div> -->
+          </div>
         </div>
         <!-- Ảnh Just Married -->
         <div class="invite-photo-wrap reveal-scale">
@@ -1545,22 +1548,22 @@ body {
         </div>
         <div class="gallery-masonry reveal-up">
           <div class="gallery-masonry-item" onclick="gLb(0)" style="cursor:pointer">
-            <img src="images/file_ok/QBX_2336.jpg" alt="Wedding photo 1" loading="lazy"/>
+            <img src="images/file_ok/QBX_2336.jpg" alt="Wedding photo 1" loading="lazy" decoding="async"/>
           </div>
           <div class="gallery-masonry-item" onclick="gLb(1)" style="cursor:pointer">
-            <img src="images/file_ok/QBX_1469.jpg" alt="Wedding photo 2" loading="lazy"/>
+            <img src="images/file_ok/QBX_1469.jpg" alt="Wedding photo 2" loading="lazy" decoding="async"/>
           </div>
           <div class="gallery-masonry-item" onclick="gLb(2)" style="cursor:pointer">
-            <img src="images/file_ok/QBX_2763.jpg" alt="Wedding photo 3" loading="lazy"/>
+            <img src="images/file_ok/QBX_2763.jpg" alt="Wedding photo 3" loading="lazy" decoding="async"/>
           </div>
           <div class="gallery-masonry-item" onclick="gLb(3)" style="cursor:pointer">
-            <img src="images/file_ok/QBX_1751.jpg" alt="Wedding photo 4" loading="lazy"/>
+            <img src="images/file_ok/QBX_1751.jpg" alt="Wedding photo 4" loading="lazy" decoding="async"/>
           </div>
           <div class="gallery-masonry-item" onclick="gLb(4)" style="cursor:pointer">
-            <img src="images/file_ok/QBX_2930.jpg" alt="Wedding photo 5" loading="lazy"/>
+            <img src="images/file_ok/QBX_2930.jpg" alt="Wedding photo 5" loading="lazy" decoding="async"/>
           </div>
           <div class="gallery-masonry-item" onclick="gLb(5)" style="cursor:pointer">
-            <img src="images/file_ok/QBX_2454.jpg" alt="Wedding photo 6" loading="lazy"/>
+            <img src="images/file_ok/QBX_2454.jpg" alt="Wedding photo 6" loading="lazy" decoding="async"/>
           </div>
         </div>
       </section>
@@ -1962,27 +1965,37 @@ document.getElementById('gbMore').addEventListener('click', function(){
 <script>
 var gImgs=['images/file_ok/QBX_2336.jpg','images/file_ok/QBX_1469.jpg','images/file_ok/QBX_2763.jpg','images/file_ok/QBX_1751.jpg','images/file_ok/QBX_2930.jpg','images/file_ok/QBX_2454.jpg','images/file_ok/QBX_1751.jpg','images/file_ok/QBX_2930.jpg','images/file_ok/QBX_2454.jpg'];
 var gIdx=0;
+var gLbBuilt=false;
 
-// Build thumbnails once
-(function(){
+// Build thumbnails lazily on first open
+function gLbBuildThumbs(){
+  if(gLbBuilt)return;
+  gLbBuilt=true;
   var s=document.getElementById('gLbThs');
   gImgs.forEach(function(src,i){
     var d=document.createElement('div');
-    d.style.cssText='width:48px;height:48px;border-radius:6px;overflow:hidden;cursor:pointer;flex-shrink:0;border:2px solid rgba(255,255,255,.15);opacity:.55;transition:all .2s;';
+    d.style.cssText='width:48px;height:48px;border-radius:6px;overflow:hidden;cursor:pointer;flex-shrink:0;border:2px solid rgba(255,255,255,.15);opacity:.55;transition:border-color .2s,opacity .2s;';
     var img=document.createElement('img');
-    img.src=src;img.style.cssText='width:100%;height:100%;object-fit:cover;display:block;';
+    img.src=src;
+    img.loading='lazy';
+    img.decoding='async';
+    img.style.cssText='width:100%;height:100%;object-fit:cover;display:block;';
     d.appendChild(img);
     d.onclick=function(e){e.stopPropagation();gLb(i);};
     s.appendChild(d);
   });
-})();
+}
 
 function gLb(i){
   gIdx=i;
   var el=document.getElementById('gLbEl');
   el.style.display='flex';
   document.body.style.overflow='hidden';
-  document.getElementById('gLbImg').src=gImgs[i];
+  gLbBuildThumbs();
+  var mainImg=document.getElementById('gLbImg');
+  mainImg.src='';
+  mainImg.decoding='async';
+  mainImg.src=gImgs[i];
   document.getElementById('gLbCt').textContent=(i+1)+' / '+gImgs.length;
   document.querySelectorAll('#gLbThs div').forEach(function(t,ti){
     t.style.borderColor=ti===i?'rgba(201,168,76,.9)':'rgba(255,255,255,.15)';
