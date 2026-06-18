@@ -24,6 +24,17 @@
   document.addEventListener('gesturechange',function(e){e.preventDefault();});
   document.addEventListener('gestureend',function(e){e.preventDefault();});
   document.addEventListener('touchmove',function(e){if(e.touches.length>1)e.preventDefault();},{passive:false});
+
+  (function(){
+    function pad(n){ return n < 10 ? '0' + n : '' + n; }
+    var now = new Date();
+    var SHARE_VERSION = '' + now.getFullYear() + pad(now.getMonth() + 1) + pad(now.getDate());
+    var url = new URL(window.location.href);
+    if(url.searchParams.get('v') !== SHARE_VERSION){
+      url.searchParams.set('v', SHARE_VERSION);
+      window.history.replaceState(null, '', url.toString());
+    }
+  })();
 </script>
 
 <style>
